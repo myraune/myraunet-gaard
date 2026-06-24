@@ -8,25 +8,33 @@ const Gallery = () => {
   const [activeCategory, setActiveCategory] = useState("all");
 
   const images = [
-    { src: "/lovable-uploads/venue-table-1.jpeg", alt: "Elegant bordoppsett", category: "gildesalen" },
-    { src: "/lovable-uploads/venue-table-2.jpeg", alt: "Festbord med detaljer", category: "gildesalen" },
-    { src: "/lovable-uploads/venue-floral.jpeg", alt: "Blomsterdekorasjon", category: "details" },
-    { src: "/lovable-uploads/venue-setting-1.jpeg", alt: "Interiør detaljer", category: "gildesalen" },
-    { src: "/lovable-uploads/venue-setting-2.jpeg", alt: "Atmosfære", category: "grisehuset" },
-    { src: "/lovable-uploads/venue-detail-1.jpeg", alt: "Detaljer og pynt", category: "details" },
-    { src: "/lovable-uploads/venue-detail-2.jpeg", alt: "Borddekorasjon", category: "details" },
-    { src: "/lovable-uploads/venue-atmosphere.jpeg", alt: "Stemningsbilde", category: "grisehuset" },
-    { src: "/lovable-uploads/venue-elegant.jpeg", alt: "Elegant setting", category: "gildesalen" },
+    { src: "/lovable-uploads/ee31250f-77e1-4ef4-9c20-017d220619d6.png", alt: "Gildesalen, innredet for selskap", category: "gildesalen" },
     { src: "/lovable-uploads/9664c9e0-24d8-4a26-8caa-43143ed756de.png", alt: "Grisehuset eksteriør", category: "grisehuset" },
-    { src: "/lovable-uploads/fefc77d2-ff55-4178-affb-c82cac29ec44.png", alt: "Historisk bilde", category: "details" },
-    { src: "/lovable-uploads/e121b0a5-3fbd-4bc1-b30b-77ec795420da.png", alt: "Tradisjonelt miljø", category: "details" },
+    { src: "/lovable-uploads/e121b0a5-3fbd-4bc1-b30b-77ec795420da.png", alt: "Tradisjonelt gårdsmiljø", category: "gildesalen" },
+    { src: "/lovable-uploads/d21b9ac7-9ce5-45e5-9eae-860aa7a09d45.png", alt: "Historisk bilde fra gården", category: "gildesalen" },
+    { src: "/lovable-uploads/5f16316b-2f82-427d-a822-701bdb6c99ed.png", alt: "Gården gjennom tiden", category: "gildesalen" },
+    { src: "/lovable-uploads/fefc77d2-ff55-4178-affb-c82cac29ec44.png", alt: "Arkivbilde fra Myraunet", category: "gildesalen" },
+    { src: "/lovable-uploads/02e53cf1-81be-43b0-acda-0603c8aabe14.png", alt: "Myraunet Gård, oversiktsbilde", category: "natur" },
+
+    { src: "/myraunet-gallery/natur/1.jpg", alt: "Sommer på Myraunet Gård", category: "natur" },
+    { src: "/myraunet-gallery/natur/2.jpg", alt: "Naturlandskap rundt gården", category: "natur" },
+    { src: "/myraunet-gallery/natur/3.jpg", alt: "Utsikt over Myraunet", category: "natur" },
+    { src: "/myraunet-gallery/natur/4.jpg", alt: "Frodig sommer på Frosta", category: "natur" },
+    { src: "/myraunet-gallery/natur/5.jpg", alt: "Gårdsomgivelser i grønt", category: "natur" },
+    { src: "/myraunet-gallery/natur/6.jpg", alt: "Stille sommerstemning", category: "natur" },
+
+    { src: "/myraunet-gallery/vinter/1.jpg", alt: "Vinterlandskap på Myraunet", category: "vinter" },
+    { src: "/myraunet-gallery/vinter/2.jpg", alt: "Snødekt gård", category: "vinter" },
+    { src: "/myraunet-gallery/vinter/3.jpg", alt: "Myraunet Gård i vinterdrakt", category: "vinter" },
+    { src: "/myraunet-gallery/vinter/4.jpg", alt: "Klar vinterdag på gården", category: "vinter" },
   ];
 
   const categories = [
     { id: "all", label: "Alle" },
     { id: "gildesalen", label: "Gildesalen" },
     { id: "grisehuset", label: "Grisehuset" },
-    { id: "details", label: "Detaljer" },
+    { id: "natur", label: "Natur" },
+    { id: "vinter", label: "Vinter" },
   ];
 
   const filteredImages =
