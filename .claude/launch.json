@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "myraunet-gaard",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--port", "3024"],
+      "port": 3024,
+      "cwd": "/Users/myraune/Desktop/myraunet-gaard"
+    }
+  ]
+}
