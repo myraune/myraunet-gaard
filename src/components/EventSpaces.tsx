@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, Home, Sparkles, Coffee, Music, Utensils } from "lucide-react";
+import { Users, Home, Calendar } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -16,16 +16,14 @@ const EventSpaces = () => {
     {
       title: "Gildesalen",
       description:
-        "Vår største og mest elegante sal, perfekt for større arrangementer. Med sin rustikke sjarm og moderne fasiliteter skaper Gildesalen den perfekte rammen for bryllup, konfirmasjoner og store selskap.",
-      capacity: "Opptil 120 gjester",
-      size: "200 m²",
+        "Gildesalen er vår største sal. Historisk sett var dette gårdens fjøs, hvor hester, kyr og sauer holdt til. Denne salen er meget godt egnet til bryllup, jubileer, julebord, eller andre større tilstelninger. Salen er meget godt egnet for kurs og konferanser. Salen kan innredes med både langbord og gruppebord.",
+      capacity: "ca. 120 personer",
+      size: "180 kvm",
       features: [
-        { icon: Users, text: "120 gjester" },
-        { icon: Home, text: "200 m² areal" },
-        { icon: Sparkles, text: "Moderne lydanlegg" },
-        { icon: Coffee, text: "Fullt utstyrt kjøkken" },
-        { icon: Music, text: "Dansegulv" },
-        { icon: Utensils, text: "Serverings-områder" },
+        { icon: Users, text: "ca. 120 personer" },
+        { icon: Home, text: "180 kvm" },
+        { icon: Calendar, text: "Egnet for: bryllup, jubileer, julebord" },
+        { icon: Calendar, text: "Egnet for: kurs og konferanser" },
       ],
       images: [
         "/lovable-uploads/ee31250f-77e1-4ef4-9c20-017d220619d6.png",
@@ -33,31 +31,60 @@ const EventSpaces = () => {
         "/lovable-uploads/venue-setting-1.jpeg",
         "/lovable-uploads/venue-elegant.jpeg",
       ],
-      price: "Fra 15.000,-",
+      price: "kr 4 000,-",
+      priceNote: "3 dager eller mer: kr 6 000,-",
       highlight: true,
     },
     {
       title: "Grisehuset",
       description:
-        "Et sjarmerende og intimt rom for mindre, eksklusive sammenkomster. Grisehuset kombinerer historisk atmosfære med moderne komfort, og er ideelt for intime bryllup, bursdager og familieselskap.",
-      capacity: "Opptil 40 gjester",
-      size: "80 m²",
+        "Grisehuset er en noe mindre sal enn Gildehallen. Med sin blanding av tømmervegger og mur skaper den en trivelig atmosfære. Salen er også velegnet for de fleste typer arrangement, og har vært mye brukt til konfirmasjoner. Salen innredes best med langbord eller hestesko-bord.",
+      capacity: "ca. 35 personer",
+      size: "80 kvm",
       features: [
-        { icon: Users, text: "40 gjester" },
-        { icon: Home, text: "80 m² areal" },
-        { icon: Sparkles, text: "Intim atmosfære" },
-        { icon: Coffee, text: "Kaffe-bar" },
-        { icon: Music, text: "Musikkutstyr" },
-        { icon: Utensils, text: "Servering" },
+        { icon: Users, text: "ca. 35 personer" },
+        { icon: Home, text: "80 kvm" },
+        { icon: Calendar, text: "Egnet for: konfirmasjoner" },
+        { icon: Calendar, text: "Egnet for: de fleste typer arrangement" },
       ],
       images: [
         "/lovable-uploads/9664c9e0-24d8-4a26-8caa-43143ed756de.png",
         "/lovable-uploads/venue-atmosphere.jpeg",
         "/lovable-uploads/venue-setting-2.jpeg",
       ],
-      price: "Fra 8.000,-",
+      price: "kr 2 500,-",
+      priceNote: "Ferdig vasket",
       highlight: false,
     },
+    {
+      title: "Stabburet",
+      description:
+        "Stabburet er bygg med flere muligheter. Det kan brukes til enkel overnatting, eller som lunsjlokale, for å variere litt under en weekend med seminar. Stabburet er best egnet under sommersesongen. Lokalene i stabburet er spredt over flere etasjer, og det er hovedsakelig i andre etasje lokalet er. Her dekker rommet hele grunnflaten og kan brukes til det meste.",
+      capacity: "Flere etasjer",
+      size: "Hele grunnflaten i 2. etasje",
+      features: [
+        { icon: Home, text: "Flere etasjer" },
+        { icon: Calendar, text: "Best egnet under sommersesongen" },
+        { icon: Calendar, text: "Egnet for: enkel overnatting" },
+        { icon: Calendar, text: "Egnet for: lunsjlokale under seminar" },
+      ],
+      images: [
+        "/lovable-uploads/stabbur.jpg",
+      ],
+      price: "Ta kontakt",
+      priceNote: "",
+      highlight: false,
+    },
+  ];
+
+  const priceBreakdown = [
+    { label: "Gildesalen", value: "kr 4 000,-" },
+    { label: "Gildesalen (3 dager eller mer)", value: "kr 6 000,-" },
+    { label: "Grisehuset (ferdig vasket)", value: "kr 2 500,-" },
+    { label: "Gildesalen + Grisehuset", value: "kr 5 000,-" },
+    { label: "Rengjøring Gildesalen", value: "kr 1 000,-" },
+    { label: "Rengjøring Grisehuset", value: "kr 500,-" },
+    { label: "Kjøkkenhjelp", value: "kr 300,- pr time" },
   ];
 
   const scrollToContact = () => {
@@ -73,7 +100,7 @@ const EventSpaces = () => {
           </h2>
           <div className="w-20 h-px bg-primary mx-auto mb-6 md:mb-8"></div>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed px-4">
-            To unike rom, hver med sin egen karakter og sjarm
+            Tre unike rom, hver med sin egen karakter og sjarm
           </p>
         </div>
 
@@ -155,6 +182,11 @@ const EventSpaces = () => {
                         <p className="text-xl md:text-2xl font-serif font-medium text-primary">
                           {space.price}
                         </p>
+                        {space.priceNote && (
+                          <p className="text-xs text-muted-foreground font-light mt-1">
+                            {space.priceNote}
+                          </p>
+                        )}
                       </div>
                       <Button
                         onClick={scrollToContact}
@@ -169,6 +201,36 @@ const EventSpaces = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-16 md:mt-24 max-w-3xl mx-auto animate-fade-in-up">
+          <Card className="border-border/50 bg-card/50 backdrop-blur-sm shadow-xl">
+            <CardHeader className="p-4 md:p-6">
+              <CardTitle className="text-2xl md:text-3xl font-serif font-light tracking-wide text-center">
+                Prisliste
+              </CardTitle>
+              <p className="text-center text-xs md:text-sm text-muted-foreground font-light">
+                Priser for leie av lokaler pr 20/4-2020
+              </p>
+            </CardHeader>
+            <CardContent className="p-4 md:p-6">
+              <ul className="divide-y divide-border/50">
+                {priceBreakdown.map((item) => (
+                  <li
+                    key={item.label}
+                    className="flex items-center justify-between py-3 text-sm md:text-base"
+                  >
+                    <span className="font-light text-foreground/80">{item.label}</span>
+                    <span className="font-serif font-medium text-primary">{item.value}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 pt-6 border-t border-border/50 space-y-2 text-xs md:text-sm text-muted-foreground font-light">
+                <p>Leietaker må selv rydde lokalet klart til rengjøring.</p>
+                <p>Alle priser inkl. mva.</p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

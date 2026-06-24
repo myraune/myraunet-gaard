@@ -16,9 +16,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Myraunet Gård — Selskapslokaler i Frosta, Trøndelag",
+  title: "Myraunet Gård - Selskapslokaler i Frosta, Nord-Trøndelag",
   description:
-    "Bryllup, konfirmasjon og selskap i historiske lokaler på Frosta. Gildesalen for opptil 120 gjester og det intime Grisehuset for opptil 40. Drevet av familien Myraune siden 2013.",
+    "Opplevelsesgård på Frosta. Gildesalen (180 kvm / ca. 120 personer), Grisehuset (80 kvm / ca. 35 personer) og Stabburet for bryllup, konfirmasjon, julebord, kurs og konferanser. Registrert i Norsk Kulturarv (Olavsrosa).",
 };
 
 export default function RootLayout({

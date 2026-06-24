@@ -14,6 +14,13 @@ const Hero = () => {
       {/* Decorative overlay elements */}
       <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent pointer-events-none"></div>
 
+      {/* Hero copy above scroll indicator */}
+      <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 w-full px-6 max-w-2xl">
+        <p className="text-center text-white text-sm md:text-base font-light tracking-wide leading-relaxed [text-shadow:_0_2px_8px_rgb(0_0_0_/_60%)]">
+          Myraunet Gård er en opplevelsesgård på Frosta i Nord-Trøndelag. Her kan du holde dine konferanser og møter, eller feire andre høytider.
+        </p>
+      </div>
+
       {/* Scroll indicator */}
       <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 animate-bounce">
         <div className="flex flex-col items-center gap-2">

@@ -3,14 +3,6 @@
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import DecorativeDivider from "@/components/ui/decorative-divider";
-import { Card } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Award, Users, Leaf, TrendingUp } from "lucide-react";
 import { useEffect } from "react";
 
 export default function Familiebedriften() {
@@ -18,46 +10,8 @@ export default function Familiebedriften() {
     window.scrollTo(0, 0);
   }, []);
 
-  const scrollToContact = () => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-  };
-
   const milestones = [
-    { year: "2014", title: "Oppstart RÅGO", description: "Lansert under Trøndersk Matfestival. De første 50 abonnementene solgt." },
-    { year: "2015-2017", title: "Vekst", description: "Fra 150 til 600 kunder. Fjøset tas i bruk som pakkesentral." },
-    { year: "2018", title: "Bygdeutviklingsprisen", description: "Tildelt Bygdeutviklingsprisen for Trøndelag." },
-    { year: "2020-2021", title: "Skalering", description: "Kraftig vekst. Omsetning rundt 14-16 mill. kr." },
-    { year: "2022", title: "Bærekraftsprisen", description: "Bærekraftsprisen på Trøndersk Matfestival." },
-    { year: "2023-2024", title: "10-årsmarkering", description: "Stabil drift, positivt driftsresultat." },
-  ];
-
-  const awards = [
-    "Bygdeutviklingsprisen for Trøndelag (2018)",
-    "Bærekraftsprisen på Trøndersk Matfestival (2022)",
-    "Gasellebedrift (2019-2022)",
-  ];
-
-  const faqs = [
-    {
-      question: "Hva er RÅGO, og hvordan henger det sammen med Myraunet gård?",
-      answer:
-        "RÅGO er merkevaren til Trondheims Kjøkkenhage AS, etablert på Myraunet gård. Vi pakker og distribuerer sesongens grønnsaker og lokalmat fra Frosta og Trøndelag. Gården er base for både selskapslokaler og RÅGO.",
-    },
-    {
-      question: "Hvor leverer RÅGO?",
-      answer:
-        "Trondheimsregionen, fra Melhus/Buvika i sør til Steinkjer i nord. Antall ruter og leveringsdager kan variere med sesong.",
-    },
-    {
-      question: "Kan dere levere mat til arrangement hos dere?",
-      answer:
-        "Ja, etter kapasitet og i sesong kan vi, gjennom RÅGO og samarbeidspartnere, bidra med lokale råvarer og servering. Dette avklares ved booking.",
-    },
-    {
-      question: "Hva betyr 'sesongbasert' i praksis?",
-      answer:
-        "Vi følger naturen. Når en råvare er ute av sesong, venter vi til den er tilbake. Det gir bedre smak, mindre svinn og kortere vei fra jord til bord.",
-    },
+    { year: "2014", title: "Oppstart RÅGO", description: "Lansert under Trøndersk Matfestival. De første abonnementene solgt." },
   ];
 
   const gallery = [
@@ -106,11 +60,11 @@ export default function Familiebedriften() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              onClick={scrollToContact}
+              asChild
               size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-6 text-base tracking-wider"
             >
-              BESTILL SELSKAPSLOKALE
+              <a href="/#contact">BESTILL SELSKAPSLOKALE</a>
             </Button>
             <Button
               onClick={() => window.open("https://raago.no", "_blank")}
@@ -133,7 +87,7 @@ export default function Familiebedriften() {
             I dag driver ekteparet Hanne Askestad Myraune og Gustav Myraune gården videre, og har gjort en gammel
             driftsbygning om til et pulserende samlingspunkt for både selskaper og matglede. Her finner du historien om
             familien, gården og RÅGO, lokalmatkonseptet som ble født i fjøset og leverer sesongens beste råvarer til
-            tusenvis av husholdninger i Trøndelag.
+            husholdninger i Trøndelag.
           </p>
         </div>
       </section>
@@ -210,38 +164,16 @@ export default function Familiebedriften() {
             </p>
           </div>
 
-          <Card className="p-8 mb-8 bg-background/50 backdrop-blur border-border/50">
-            <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-              Konseptet er sesongbaserte matkasser med grønnsaker og lokalmat fra Frosta og resten av Trøndelag, levert
-              hjem. Utvalget følger årstidene. Vi bruker solide gjenbrukskasser som vaskes og desinfiseres, og ruteplanlegger
-              kjøringen for færrest mulig kilometer per levering.
+          <div className="max-w-3xl mx-auto space-y-6">
+            <p className="text-lg leading-relaxed text-muted-foreground">
+              RÅGO leverer sesongbaserte matkasser til kunder i Trondheimsregionen og samarbeider med en rekke lokale
+              produsenter på Frosta og i resten av Trøndelag. Utvalget følger årstidene, og vi bruker solide
+              gjenbrukskasser som vaskes og desinfiseres mellom leveringene.
             </p>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              I sesong løfter vi frem rundt 100 ulike grønnsakstyper og samarbeider med over 50 produsenter i regionen.
+              Ruteplanleggingen er lagt opp for færrest mulig kilometer per levering, slik at råvarene kommer raskt fra
+              jord til kjøkken.
             </p>
-          </Card>
-
-          <div className="grid md:grid-cols-4 gap-6">
-            <Card className="p-6 text-center bg-background/50 backdrop-blur border-border/50">
-              <Users className="w-10 h-10 mx-auto mb-3 text-primary" />
-              <div className="text-3xl font-serif font-light mb-2">~2000</div>
-              <div className="text-sm text-muted-foreground">Husholdninger på abonnement</div>
-            </Card>
-            <Card className="p-6 text-center bg-background/50 backdrop-blur border-border/50">
-              <Leaf className="w-10 h-10 mx-auto mb-3 text-primary" />
-              <div className="text-3xl font-serif font-light mb-2">50+</div>
-              <div className="text-sm text-muted-foreground">Produsenter i nettverket</div>
-            </Card>
-            <Card className="p-6 text-center bg-background/50 backdrop-blur border-border/50">
-              <TrendingUp className="w-10 h-10 mx-auto mb-3 text-primary" />
-              <div className="text-3xl font-serif font-light mb-2">~1000</div>
-              <div className="text-sm text-muted-foreground">Kasser i uka i høysesong</div>
-            </Card>
-            <Card className="p-6 text-center bg-background/50 backdrop-blur border-border/50">
-              <Award className="w-10 h-10 mx-auto mb-3 text-primary" />
-              <div className="text-3xl font-serif font-light mb-2">16</div>
-              <div className="text-sm text-muted-foreground">Faste ruter</div>
-            </Card>
           </div>
         </div>
       </section>
@@ -268,11 +200,11 @@ export default function Familiebedriften() {
                   }`}
                 >
                   <div className={`flex-1 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
-                    <Card className="p-6 bg-background/50 backdrop-blur border-border/50">
+                    <div className="p-6 bg-background/50 backdrop-blur border border-border/50 rounded-lg">
                       <div className="text-3xl font-serif text-primary mb-2">{milestone.year}</div>
                       <h3 className="text-xl font-semibold mb-2">{milestone.title}</h3>
                       <p className="text-muted-foreground">{milestone.description}</p>
-                    </Card>
+                    </div>
                   </div>
 
                   <div className="hidden md:block w-4 h-4 rounded-full bg-primary border-4 border-background shadow-lg z-10"></div>
@@ -317,65 +249,17 @@ export default function Familiebedriften() {
         </div>
       </section>
 
-      {/* Priser og anerkjennelser */}
-      <section className="py-16 px-6">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-serif font-light mb-6 tracking-wide">Priser og anerkjennelser</h2>
-            <div className="w-20 h-px bg-primary mx-auto mb-6"></div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {awards.map((award, index) => (
-              <Card key={index} className="p-6 text-center bg-card/30 backdrop-blur border-border/50">
-                <Award className="w-12 h-12 mx-auto mb-4 text-primary" />
-                <p className="text-muted-foreground">{award}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <DecorativeDivider className="my-16" />
-
-      {/* FAQ */}
-      <section className="py-16 px-6 bg-background">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-serif font-light mb-6 tracking-wide">Ofte stilte spørsmål</h2>
-            <div className="w-20 h-px bg-primary mx-auto mb-6"></div>
-          </div>
-
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="border border-border/50 rounded-lg px-6 bg-card/30 backdrop-blur-sm"
-              >
-                <AccordionTrigger className="text-left font-serif text-lg hover:text-primary">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pt-2">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
-
       {/* CTA Footer */}
       <section className="py-16 px-6 bg-primary/10">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-3xl font-serif font-light mb-6">Klar for å planlegge ditt arrangement?</h2>
           <p className="text-lg text-muted-foreground mb-8">Ta kontakt med oss for å diskutere dine behov</p>
           <Button
-            onClick={scrollToContact}
+            asChild
             size="lg"
             className="bg-primary hover:bg-primary/90 text-primary-foreground px-12 py-6 text-base tracking-wider"
           >
-            KONTAKT OSS
+            <a href="/#contact">KONTAKT OSS</a>
           </Button>
         </div>
       </section>

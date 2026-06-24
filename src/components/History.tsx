@@ -3,25 +3,41 @@ import DecorativeDivider from './ui/decorative-divider';
 const History = () => {
   const timelineEvents = [
     {
-      period: "1940-1950-tallet",
-      title: "Tradisjonell Gårdsdrift",
-      description: "Myraunet Gård som tradisjonell gård med storfe og aktivitet. Autentiske øyeblikk fra gårdslivet, hvor tradisjonell landbruksdrift var i fokus og familien var sentral i driften.",
-      image: "/lovable-uploads/d21b9ac7-9ce5-45e5-9eae-860aa7a09d45.png",
+      period: "Navnet",
+      title: "Opprinnelsen til Myraunet",
+      description: "Gårdsnavnet stammer fra norrønt,sammensatt av \"myr\" og \"øfn/audn\" (ødeland, avsides liggende). Navnet forteller om en gård som lå litt for seg selv, i myrlendt terreng på Frosta.",
       align: "left"
     },
     {
-      period: "1970-1980-tallet",
-      title: "Utvikling og Modernisering",
-      description: "Gården fortsatte å utvikle seg gjennom 1970- og 1980-tallet. Gården utviklet seg mot det vi kjenner i dag, mens den beholdt sin autentiske karakter og familietilknytning.",
-      image: "/lovable-uploads/5f16316b-2f82-427d-a822-701bdb6c99ed.png",
+      period: "1600 - 1832",
+      title: "Prestbolet Eide Gården",
+      description: "I over to hundre år lå Myraunet under Prestbolet,kirkas eiendom på Frosta. Driverne var leilendinger som drev jorden på vegne av kirka, helt frem til gården gikk over i privat eie i 1832.",
       align: "right"
     },
     {
-      period: "I dag",
-      title: "En Destinasjon for Øyeblikk som Betyr Noe",
-      description: "I dag står Myraunet Gård som en perle for spesielle arrangementer. Vi bevarer historien mens vi skaper nye minner for våre gjester.",
-      image: "/lovable-uploads/venue-elegant.jpeg",
+      period: "1728",
+      title: "Skyld 2 Øre 12 Ml",
+      description: "I matrikkelen fra 1728 ble Myraunet ført opp med en skyld på 2 øre og 12 marklag,den gamle norske skattegrunnlaget som forteller om gårdens størrelse og avkastning på denne tiden.",
       align: "left"
+    },
+    {
+      period: "1835",
+      title: "Buskap og Husdyrhold",
+      description: "Da buskapen ble registrert i 1835, hadde gården 1 hest, 3 kyr, 6 sauer og 1 gris. Et beskjedent dyrehold, typisk for en mellomstor frostagård i tidlig 1800-tall.",
+      align: "right"
+    },
+    {
+      period: "1864",
+      title: "54 Daa Dyrka Jord",
+      description: "I 1864 ble det registrert 54 dekar dyrka jord på Myraunet. Det samme året skiftet gården eier,fra Jakob Sørensen Myraunet til Kristian Bernt Richter,og en ny epoke i gårdens drift begynte.",
+      align: "left"
+    },
+    {
+      period: "I dag",
+      title: "Hanne og Gustav Driver Gården Videre",
+      description: "Hanne Askestad Myraune og Gustav Myraune driver Myraunet Gård videre som familiebedrift. Gården bevarer sin lange historie samtidig som den åpner dørene for arrangement, kurs og selskap i autentiske, tradisjonsrike omgivelser.",
+      image: "/lovable-uploads/venue-elegant.jpeg",
+      align: "right"
     }
   ];
 
@@ -38,14 +54,14 @@ const History = () => {
     { years: "1739 - 1757", name: "Anders Amundsen" },
     { years: "1757 - 1780", name: "Ole Amundsen Myraunet" },
     { years: "1780 - 1797", name: "Ole Olsen Myraunet" },
-    { years: "1797 - 1832", name: "Soren Aagesen" },
-    { years: "1832 - 1864", name: "Jakob Sorensen Myraunet" },
+    { years: "1797 - 1832", name: "Søren Aagesen" },
+    { years: "1832 - 1864", name: "Jakob Sørensen Myraunet" },
     { years: "1864 - 1866", name: "Kristian Bernt Richter" },
     { years: "1866 - 1868", name: "Torsten Olsen Vangberg" },
     { years: "1868 - 1885", name: "Johan Arnt Andreasen Hovdal" },
     { years: "1885 - 1913", name: "Mette Rekkebo & Gunnar Andreasen Hovdal" },
     { years: "1913 - 1941", name: "Dina Storset Myraunet & Lars Myraunet" },
-    { years: "1941 - 1982", name: "Julianne Sandvik Myraunet & Gustav Johan Myraunet" },
+    { years: "1941 - 1982", name: "Juliane Sandvik Myraunet & Gustav Johan Myraunet" },
     { years: "1982 - 2012", name: "Kjersti Sannes Myraune & Lars Myraune" },
     { years: "2013 - ", name: "Hanne Askestad Myraune & Gustav Myraune", current: true }
   ];
@@ -74,16 +90,27 @@ const History = () => {
                 <div className={`grid lg:grid-cols-2 gap-6 md:gap-10 items-center ${
                   event.align === 'right' ? 'lg:grid-flow-dense' : ''
                 }`}>
-                  {/* Image */}
+                  {/* Image or decorative panel */}
                   <div className={`${event.align === 'right' ? 'lg:col-start-2' : ''} relative group`}>
-                    <div className="relative overflow-hidden rounded-lg shadow-2xl">
-                      <img
-                        src={event.image}
-                        alt={event.title}
-                        className="w-full h-[250px] md:h-[350px] lg:h-[400px] object-cover transform group-hover:scale-105 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    </div>
+                    {event.image ? (
+                      <div className="relative overflow-hidden rounded-lg shadow-2xl">
+                        <img
+                          src={event.image}
+                          alt={event.title}
+                          className="w-full h-[250px] md:h-[350px] lg:h-[400px] object-cover transform group-hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                      </div>
+                    ) : (
+                      <div className="relative overflow-hidden rounded-lg shadow-xl bg-gradient-to-br from-primary/10 via-secondary/40 to-primary/5 h-[250px] md:h-[350px] lg:h-[400px] flex items-center justify-center border border-primary/10">
+                        <div className="text-center px-6">
+                          <div className="text-5xl md:text-6xl lg:text-7xl font-serif font-light text-primary/70 tracking-wide mb-3">
+                            {event.period}
+                          </div>
+                          <div className="w-16 h-px bg-primary/40 mx-auto"></div>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Content */}
@@ -153,6 +180,37 @@ const History = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Olavsrosa,Norsk Kulturarv */}
+        <div className="mt-20 md:mt-28">
+          <DecorativeDivider className="mb-12 md:mb-16" />
+
+          <div className="max-w-3xl mx-auto text-center animate-fade-in">
+            <div className="inline-block px-4 md:px-6 py-1.5 md:py-2 bg-primary/10 rounded-full mb-5">
+              <span className="text-primary font-medium tracking-wide text-sm md:text-base">
+                Olavsrosa
+              </span>
+            </div>
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-light tracking-wide mb-5">
+              Registrert i Norsk Kulturarv
+            </h3>
+            <div className="w-16 h-px bg-primary mx-auto mb-6"></div>
+            <p className="text-muted-foreground leading-relaxed font-light text-sm md:text-base lg:text-lg">
+              Myraunet Gård er tildelt Olavsrosa og registrert i Norsk Kulturarv,et nasjonalt
+              kvalitetsmerke som anerkjenner steder med levende kulturhistorie og en autentisk
+              opplevelse av norsk arv. Merket forplikter oss til å bevare bygningene, fortellingene
+              og driftsformene som har formet gården gjennom århundrer.
+            </p>
+            <a
+              href="https://www.olavsrosa.no/objektinfo.aspx?id=3272851"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-7 text-sm md:text-base text-primary font-medium tracking-wide border-b border-primary/40 hover:border-primary transition-colors"
+            >
+              Les mer på olavsrosa.no
+            </a>
           </div>
         </div>
       </div>

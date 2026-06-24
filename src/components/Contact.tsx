@@ -6,7 +6,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Award, BedDouble } from "lucide-react";
+
+const FacebookIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+  </svg>
+);
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -58,7 +69,7 @@ Med vennlig hilsen,
 ${formData.firstName} ${formData.lastName}
       `;
 
-      const mailtoLink = `mailto:andreas@myraune.com?subject=${encodeURIComponent(
+      const mailtoLink = `mailto:gustav@myraune.no?subject=${encodeURIComponent(
         subject
       )}&body=${encodeURIComponent(body)}`;
       window.location.href = mailtoLink;
@@ -225,7 +236,10 @@ ${formData.firstName} ${formData.lastName}
                     />
                   </div>
 
-                  <div className="pt-6">
+                  <div className="pt-6 space-y-4">
+                    <p className="text-sm text-stone-600 font-light italic text-center">
+                      Bestillingen er ikke bindende før du har mottatt bekreftelse fra oss.
+                    </p>
                     <Button
                       type="submit"
                       disabled={isSubmitting}
@@ -257,8 +271,7 @@ ${formData.firstName} ${formData.lastName}
                         Adresse
                       </h4>
                       <p className="text-stone-600 font-light text-sm md:text-base">
-                        Kvamdalsvegen 355<br />
-                        7633 Frosta, Trøndelag
+                        7633 Frosta
                       </p>
                     </div>
                   </div>
@@ -271,7 +284,11 @@ ${formData.firstName} ${formData.lastName}
                     </div>
                     <div>
                       <h4 className="font-medium text-stone-800 mb-2 tracking-wide">Telefon</h4>
-                      <p className="text-stone-600 font-light">46 19 55 48</p>
+                      <p className="text-stone-600 font-light">
+                        <a href="tel:+4795284333" className="hover:text-emerald-700 transition-colors">
+                          +47 952 84 333
+                        </a>
+                      </p>
                     </div>
                   </div>
                 </Card>
@@ -283,7 +300,68 @@ ${formData.firstName} ${formData.lastName}
                     </div>
                     <div>
                       <h4 className="font-medium text-stone-800 mb-2 tracking-wide">E-post</h4>
-                      <p className="text-stone-600 font-light">andreas@myraune.com</p>
+                      <p className="text-stone-600 font-light">
+                        <a href="mailto:gustav@myraune.no" className="hover:text-emerald-700 transition-colors">
+                          gustav@myraune.no
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-6 shadow-lg border-0 bg-white">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Award className="h-5 w-5 text-emerald-700" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-stone-800 mb-2 tracking-wide">Olavsrosa</h4>
+                      <p className="text-stone-600 font-light text-sm md:text-base">
+                        Myraunet Gård er tildelt Olavsrosa, et kvalitetsmerke for norsk kulturarv.{" "}
+                        <a
+                          href="https://www.olavsrosa.no/objektinfo.aspx?id=3272851"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-emerald-700 hover:text-emerald-800 underline underline-offset-2"
+                        >
+                          Se sertifikat
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-6 shadow-lg border-0 bg-white">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <FacebookIcon className="h-5 w-5 text-emerald-700" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-stone-800 mb-2 tracking-wide">Facebook</h4>
+                      <p className="text-stone-600 font-light text-sm md:text-base">
+                        <a
+                          href="https://www.facebook.com/121429851204034"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-emerald-700 hover:text-emerald-800 underline underline-offset-2"
+                        >
+                          Følg oss på Facebook
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-6 shadow-lg border-0 bg-stone-50">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-stone-200 rounded-full flex items-center justify-center flex-shrink-0">
+                      <BedDouble className="h-5 w-5 text-stone-700" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-stone-800 mb-2 tracking-wide">Overnatting</h4>
+                      <p className="text-stone-700 font-light text-sm md:text-base">
+                        Overnatting er dessverre ikke mulig på Myraunet Gård for øyeblikket
+                      </p>
                     </div>
                   </div>
                 </Card>

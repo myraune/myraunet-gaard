@@ -7,6 +7,7 @@ import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import DecorativeDivider from "@/components/ui/decorative-divider";
 import FamiliebedriftenTeaser from "@/components/FamiliebedriftenTeaser";
+import Map from "@/components/Map";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       <Gallery />
 
       <FAQ />
+      <Map />
       <Contact />
     </div>
   );
