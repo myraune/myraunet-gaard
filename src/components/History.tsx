@@ -36,7 +36,7 @@ const History = () => {
       period: "I dag",
       title: "Hanne og Gustav Driver Gården Videre",
       description: "Hanne Askestad Myraune og Gustav Myraune driver Myraunet Gård videre som familiebedrift. Gården bevarer sin lange historie samtidig som den åpner dørene for arrangement, kurs og selskap i autentiske, tradisjonsrike omgivelser.",
-      image: "/lovable-uploads/venue-elegant.jpeg",
+      image: "/lovable-uploads/02e53cf1-81be-43b0-acda-0603c8aabe14.png",
       align: "right"
     }
   ];

@@ -27,9 +27,9 @@ const EventSpaces = () => {
       ],
       images: [
         "/lovable-uploads/ee31250f-77e1-4ef4-9c20-017d220619d6.png",
-        "/lovable-uploads/venue-table-1.jpeg",
-        "/lovable-uploads/venue-setting-1.jpeg",
-        "/lovable-uploads/venue-elegant.jpeg",
+        "/lovable-uploads/02e53cf1-81be-43b0-acda-0603c8aabe14.png",
+        "/lovable-uploads/e121b0a5-3fbd-4bc1-b30b-77ec795420da.png",
+        "/myraunet-gallery/natur/4.jpg",
       ],
       price: "kr 4 000,-",
       priceNote: "3 dager eller mer: kr 6 000,-",
@@ -49,8 +49,8 @@ const EventSpaces = () => {
       ],
       images: [
         "/lovable-uploads/9664c9e0-24d8-4a26-8caa-43143ed756de.png",
-        "/lovable-uploads/venue-atmosphere.jpeg",
-        "/lovable-uploads/venue-setting-2.jpeg",
+        "/lovable-uploads/fefc77d2-ff55-4178-affb-c82cac29ec44.png",
+        "/lovable-uploads/d21b9ac7-9ce5-45e5-9eae-860aa7a09d45.png",
       ],
       price: "kr 2 500,-",
       priceNote: "Ferdig vasket",
@@ -70,6 +70,7 @@ const EventSpaces = () => {
       ],
       images: [
         "/lovable-uploads/stabbur.jpg",
+        "/myraunet-gallery/natur/5.jpg",
       ],
       price: "Ta kontakt",
       priceNote: "",
