@@ -1,0 +1,137 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import {
+  ButtonLink,
+  CtaBand,
+  FactList,
+  PageHero,
+  Section,
+  SectionHead,
+} from "@/components/site/Bits";
+import PriceTable from "@/components/site/PriceTable";
+import FaqList from "@/components/site/FaqList";
+import { eventBySlug, eventTypes, site } from "@/lib/content";
+
+export function generateStaticParams() {
+  return eventTypes.map((event) => ({ slug: event.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const event = eventBySlug(slug);
+  if (!event) return {};
+
+  return {
+    title: event.metaTitle,
+    description: event.metaDescription,
+    alternates: { canonical: `/arrangement/${event.slug}` },
+    openGraph: {
+      title: event.metaTitle,
+      description: event.metaDescription,
+      images: [{ url: event.image.src, alt: event.image.alt }],
+    },
+  };
+}
+
+export default async function EventPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const event = eventBySlug(slug);
+  if (!event) notFound();
+
+  const others = eventTypes.filter((e) => e.slug !== event.slug);
+
+  return (
+    <>
+      <PageHero
+        eyebrow="Arrangement"
+        title={event.name}
+        lead={event.lead}
+        image={event.image.src}
+        alt={event.image.alt}
+      />
+
+      <Section>
+        <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
+          <div className="max-w-2xl space-y-6">
+            {event.body.map((paragraph) => (
+              <p
+                key={paragraph.slice(0, 32)}
+                className="text-base leading-[1.75] text-foreground/85 md:text-lg"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+
+          <aside>
+            <div className="border-t border-foreground/20">
+              <FactList items={event.points} />
+            </div>
+            {event.season && (
+              <p className="mt-4 text-sm text-muted-foreground">
+                Sesong: {event.season.toLowerCase()}.
+              </p>
+            )}
+            <div className="mt-8">
+              <ButtonLink href="/kontakt">Send forespørsel</ButtonLink>
+            </div>
+            <p className="mt-6 text-sm text-muted-foreground">
+              Eller ring{" "}
+              <a href={site.phoneHref} className="text-primary hover:underline">
+                {site.phone}
+              </a>{" "}
+              for en uforpliktende prat.
+            </p>
+          </aside>
+        </div>
+      </Section>
+
+      <Section tone="muted">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
+          <SectionHead
+            eyebrow="Priser"
+            title="Hva det koster"
+            lead="Dere leier lokalet. Rengjøring og kjøkkenhjelp er tillegg dere velger selv."
+          />
+          <PriceTable />
+        </div>
+      </Section>
+
+      <Section>
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:gap-20">
+          <SectionHead eyebrow="Spørsmål" title="Godt å vite på forhånd" />
+          <FaqList limit={5} />
+        </div>
+      </Section>
+
+      <Section tone="muted">
+        <SectionHead eyebrow="Andre anledninger" title="Se også" />
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          {others.map((other) => (
+            <Link
+              key={other.slug}
+              href={`/arrangement/${other.slug}`}
+              className="group border border-border bg-background p-7 transition-colors hover:border-primary"
+            >
+              <h3 className="font-serif text-xl font-light text-foreground group-hover:text-primary">
+                {other.navLabel}
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">{other.venue}</p>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <CtaBand />
+    </>
+  );
+}

@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Myraunet Gård
 
-## Getting Started
+Nettsted for Myraunet Gård på Frosta i Trøndelag: selskapslokaler, arrangement,
+priser, gårdshistorie og familiebedriften bak RÅGO.
 
-First, run the development server:
+- Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind v3
+- Dev: `npm run dev -- --port 3024`
+- Prod: myraunet.no (per september 2026 serverer domenet fortsatt den gamle
+  PHP-siden, dette prosjektet er ikke satt på domenet ennå)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Struktur
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Rute | Innhold |
+| --- | --- |
+| `/` | Forside: hero, gården, lokaler, arrangement, priser, galleri, FAQ, kart |
+| `/lokaler` + `/lokaler/[slug]` | Gildesalen, Grisehuset, Stabburet |
+| `/arrangement` + `/arrangement/[slug]` | Bryllup, konfirmasjon, julebord, kurs og konferanse |
+| `/priser` | Full prisliste, inkludert og ikke inkludert |
+| `/galleri` | Filtrerbart galleri med lightbox |
+| `/historie` | Milepæler fra 1557 og hele brukerrekka |
+| `/familiebedriften` | Hanne og Gustav, RÅGO |
+| `/kontakt` | Forespørselsskjema, kontaktinfo, kart |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Innhold er data, ikke markup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Alle tall, priser, lokaler, arrangementstyper, FAQ og bildetekster ligger i
+`src/lib/content.ts`. Endre der, ikke i komponentene, så holder sidene seg like.
 
-## Learn More
+Kilden til faktaopplysningene er den gamle myraunet.no (lokaler, priser per
+20.04.2020, gårdshistorien og brukerrekka). Ikke legg til påstander som ikke
+står der eller er bekreftet av Hanne og Gustav.
 
-To learn more about Next.js, take a look at the following resources:
+### Bilder
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Bildene fra Lovable-porten var feilmerket. Fasiten er de navngitte filene på
+gamle myraunet.no (`imgs/gildesalen.jpg`, `imgs/grisehuset.jpg`,
+`imgs/stabbur.jpg`). Kort fortalt:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Gildesalen: tømmersalen med mørke tømmervegger og runde stolper
+- Grisehuset: salen med lys mur, én midtstolpe og filleryer på gulvet
+- Stabburet: `stabbur.jpg`
 
-## Deploy on Vercel
+## Forespørselsskjemaet
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`/kontakt` poster til `/api/foresporsel`, som sender e-post via Resend når
+`RESEND_API_KEY` er satt. Uten nøkkel svarer ruta 503 med `fallback: "mailto"`,
+og skjemaet åpner besøkendes e-postklient med alt ferdig utfylt. Se
+`.env.example`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Skjemaet har en skjult honningkrukke (`nettside`). Poster med det feltet utfylt
+får 200 uten at det sendes noe.
+
+## Vercel
+
+Push til `main` utløser en betalt cloud-build. Batch pushene, se `CLAUDE.md`.

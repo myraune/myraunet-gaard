@@ -1,0 +1,500 @@
+/**
+ * Én sannhetskilde for alt faktainnhold på myraunet.no.
+ *
+ * Kilder:
+ *  - myraunet.no (gammel side): lokaler, priser (20.04.2020), historie, arrangementstyper
+ *  - Olavsrosa/Norsk Kulturarv-oppføringen
+ * Ikke skriv tall eller påstander direkte i komponentene. Legg dem her.
+ */
+
+export const site = {
+  name: "Myraunet Gård",
+  tagline: "Opplevelsesgård på Frosta",
+  url: "https://myraunet.no",
+  address: {
+    street: "Kvamdalsvegen 355",
+    postal: "7633",
+    city: "Frosta",
+    region: "Trøndelag",
+  },
+  phone: "+47 952 84 333",
+  phoneHref: "tel:+4795284333",
+  email: "gustav@myraune.no",
+  coordinates: { lat: 63.607981, lng: 10.799314 },
+  drivers: "Hanne Askestad Myraune og Gustav Myraune",
+  driversSince: "2013",
+  olavsrosa: "https://www.olavsrosa.no/objektinfo.aspx?id=3272851",
+  facebook: "https://www.facebook.com/121429851204034",
+  mapEmbed:
+    "https://www.google.com/maps?q=63.607981,10.799314&z=14&output=embed",
+  mapLink: "https://www.google.com/maps?q=63.607981,10.799314",
+} as const;
+
+export type Venue = {
+  slug: string;
+  name: string;
+  lead: string;
+  body: string[];
+  facts: { label: string; value: string }[];
+  suits: string[];
+  price: string;
+  priceNote?: string;
+  images: { src: string; alt: string }[];
+};
+
+export const venues: Venue[] = [
+  {
+    slug: "gildesalen",
+    name: "Gildesalen",
+    lead: "Gårdens gamle fjøs, i dag den største salen. 180 kvm, plass til rundt 120 personer.",
+    body: [
+      "Gildesalen er vår største sal. Historisk sett var dette gårdens fjøs, hvor hester, kyr og sauer holdt til. Salen har blitt pusset opp i flere omganger, og fremstår nå som et bonderomantisk lokale med mange historiske gjenstander utstilt.",
+      "Salen kan innredes med både langbord og gruppebord, og er meget godt egnet til bryllup, jubileer, julebord og andre større tilstelninger. For kurs og konferanser anbefaler vi også Gildesalen.",
+    ],
+    facts: [
+      { label: "Areal", value: "180 kvm" },
+      { label: "Kapasitet", value: "ca. 120 personer" },
+      { label: "Bordoppsett", value: "Langbord eller gruppebord" },
+      { label: "Leiepris", value: "kr 4 000,-" },
+    ],
+    suits: ["Bryllup", "Jubileum", "Julebord", "Kurs og konferanse", "Konsert"],
+    price: "kr 4 000,-",
+    priceNote: "Tre dager eller mer: kr 6 000,-",
+    images: [
+      {
+        src: "/lovable-uploads/d4692008-4440-4ffe-95df-334b4f30558e.png",
+        alt: "Gildesalen pyntet til selskap, med langbord og hvite stoltrekk under tømmertaket",
+      },
+      {
+        src: "/lovable-uploads/1dbad16c-7bac-40e9-a9c9-38a5475118af.png",
+        alt: "Dekket langbord i Gildesalen med markblomster og levende lys",
+      },
+      {
+        src: "/lovable-uploads/36e34f85-cdf6-4bde-a478-d4f040423f4d.png",
+        alt: "Bordoppdekning i Gildesalen mot tømmerveggen",
+      },
+      {
+        src: "/lovable-uploads/konferanse-arkiv.jpg",
+        alt: "Kurs i Gildesalen med prosjektor og deltakere rundt bordene",
+      },
+    ],
+  },
+  {
+    slug: "grisehuset",
+    name: "Grisehuset",
+    lead: "Tømmervegger og mur, 80 kvm og plass til rundt 35 personer. Mye brukt til konfirmasjon.",
+    body: [
+      "Grisehuset er en noe mindre sal enn Gildesalen. Med sin blanding av tømmervegger og mur har den en trivelig atmosfære, og passer godt til grillfester der grillen står rett utenfor og gjestene kan mingle både inne og ute.",
+      "Salen er velegnet for de fleste typer arrangement, og har vært mye brukt til konfirmasjoner. Den innredes best med langbord eller hestesko-bord.",
+    ],
+    facts: [
+      { label: "Areal", value: "80 kvm" },
+      { label: "Kapasitet", value: "ca. 35 personer" },
+      { label: "Bordoppsett", value: "Langbord eller hestesko" },
+      { label: "Leiepris", value: "kr 2 500,- ferdig vasket" },
+    ],
+    suits: ["Konfirmasjon", "Fødselsdag", "Grillfest", "Mindre selskap"],
+    price: "kr 2 500,-",
+    priceNote: "Ferdig vasket",
+    images: [
+      {
+        src: "/lovable-uploads/9664c9e0-24d8-4a26-8caa-43143ed756de.png",
+        alt: "Grisehuset innvendig, med bordene satt i hestesko rundt midtstolpen",
+      },
+      {
+        src: "/lovable-uploads/64204c1b-f0db-4865-8449-273f477e5561.png",
+        alt: "Grisehuset dekket til selskap, med tømmervegger, mur og filleryer på gulvet",
+      },
+    ],
+  },
+  {
+    slug: "stabburet",
+    name: "Stabburet",
+    lead: "Rom over flere etasjer, best om sommeren. Brukes som lunsjlokale og pauserom.",
+    body: [
+      "Stabburet er et bygg med flere muligheter. Det brukes som lunsjlokale eller pauserom, for å variere litt gjennom en helg med seminar.",
+      "Lokalene er spredt over flere etasjer, og det er hovedsakelig i andre etasje selve lokalet ligger. Der dekker rommet hele grunnflaten. Stabburet er best egnet i sommersesongen.",
+    ],
+    facts: [
+      { label: "Plassering", value: "Hovedlokale i 2. etasje" },
+      { label: "Areal", value: "Hele grunnflaten" },
+      { label: "Sesong", value: "Best om sommeren" },
+      { label: "Leiepris", value: "Ta kontakt" },
+    ],
+    suits: ["Lunsjlokale", "Pauserom under seminar", "Mindre samlinger"],
+    price: "Ta kontakt",
+    images: [
+      { src: "/lovable-uploads/stabbur.jpg", alt: "Stabburet, rødmalt og med torvtak, på gårdstunet" },
+      {
+        src: "/myraunet-gallery/natur/5.jpg",
+        alt: "Gårdsvegen og jordene på Myraunet om sommeren",
+      },
+    ],
+  },
+];
+
+export const venueBySlug = (slug: string) => venues.find((v) => v.slug === slug);
+
+export type EventType = {
+  slug: string;
+  name: string;
+  navLabel: string;
+  lead: string;
+  body: string[];
+  venue: string;
+  season?: string;
+  points: { label: string; value: string }[];
+  image: { src: string; alt: string };
+  metaTitle: string;
+  metaDescription: string;
+};
+
+export const eventTypes: EventType[] = [
+  {
+    slug: "bryllup",
+    name: "Bryllup på gården",
+    navLabel: "Bryllup",
+    lead: "Gildesalen tar rundt 120 gjester. Dere tar med egen mat, eget program og egen musikk.",
+    body: [
+      "Et bryllup i Gildesalen foregår i et gammelt fjøs med tømmer, historiske gjenstander på veggene og gårdstunet rett utenfor døra. Salen tar rundt 120 personer, og kan settes med langbord for hele følget eller gruppebord om dere vil ha løsere stemning.",
+      "Dere leier lokalet, og står fritt til å velge mat, drikke, forlovere og program selv. Kjøkkenet kan brukes av leietaker, og kjøkkenhjelp kan leies for kr 300,- pr. time. Grisehuset kan leies i tillegg dersom dere trenger et rom til mingling eller kaffe dagen derpå.",
+      "Vær tidlig ute med datoen. Lørdager i juni, juli og august går først.",
+    ],
+    venue: "Gildesalen",
+    season: "Hele året, mest brukt mai til september",
+    points: [
+      { label: "Lokale", value: "Gildesalen, 180 kvm" },
+      { label: "Gjester", value: "ca. 120 personer" },
+      { label: "Leiepris", value: "kr 4 000,- (fra kr 6 000,- ved tre dager eller mer)" },
+      { label: "Mat og drikke", value: "Dere ordner selv, kjøkken kan benyttes" },
+    ],
+    image: {
+      src: "/lovable-uploads/9bc8604c-b534-4a72-b0b3-e6f5281829a4.png",
+      alt: "Brud og bryllupsfølge på gårdstunet foran den røde låven",
+    },
+    metaTitle: "Bryllup i Trøndelag - Myraunet Gård på Frosta",
+    metaDescription:
+      "Feir bryllupet i Gildesalen på Myraunet Gård, Frosta. 180 kvm gammelt fjøs med plass til ca. 120 gjester. Leiepris kr 4 000,-. Dere velger mat og program selv.",
+  },
+  {
+    slug: "konfirmasjon",
+    name: "Konfirmasjon",
+    navLabel: "Konfirmasjon",
+    lead: "Grisehuset er det mest brukte lokalet til konfirmasjon. Rundt 35 gjester, kr 2 500,- ferdig vasket.",
+    body: [
+      "Grisehuset er 80 kvm med tømmervegger og mur, og har vært brukt til konfirmasjoner i mange år. Med langbord eller hestesko sitter rundt 35 gjester godt.",
+      "Skal dere være flere, kan Gildesalen leies i stedet, eller begge lokaler samlet for kr 5 000,-. Grillen kan settes rett utenfor Grisehuset, og gjestene kan bevege seg mellom ute og inne.",
+      "Grisehuset leies ut ferdig vasket. Leietaker rydder lokalet klart til rengjøring etter bruk.",
+    ],
+    venue: "Grisehuset",
+    season: "Vår og sommer",
+    points: [
+      { label: "Lokale", value: "Grisehuset, 80 kvm" },
+      { label: "Gjester", value: "ca. 35 personer" },
+      { label: "Leiepris", value: "kr 2 500,- ferdig vasket" },
+      { label: "Flere gjester", value: "Gildesalen, eller begge lokaler kr 5 000,-" },
+    ],
+    image: {
+      src: "/lovable-uploads/64204c1b-f0db-4865-8449-273f477e5561.png",
+      alt: "Grisehuset dekket til selskap med bordene i hestesko",
+    },
+    metaTitle: "Lokale til konfirmasjon på Frosta - Myraunet Gård",
+    metaDescription:
+      "Grisehuset på Myraunet Gård tar ca. 35 gjester og koster kr 2 500,- ferdig vasket. Mye brukt til konfirmasjon på Frosta i Trøndelag.",
+  },
+  {
+    slug: "julebord",
+    name: "Julebord",
+    navLabel: "Julebord",
+    lead: "En av gårdens faste sesonger. Book tidlig, desemberhelgene går først.",
+    body: [
+      "Julebord er en av våre sesongbetonte aktiviteter, og alltid en suksess. De landlige og tradisjonsrike omgivelsene setter stemningen før og under julehøytiden.",
+      "Gildesalen tar rundt 120 personer med langbord, og passer for bedrifter som samler hele huset. Mindre avdelinger og vennegjenger bruker Grisehuset.",
+      "Selv om det er lenge til neste julebord, kan det være greit å være tidlig ute med bestilling av lokale.",
+    ],
+    venue: "Gildesalen eller Grisehuset",
+    season: "November og desember",
+    points: [
+      { label: "Stort selskap", value: "Gildesalen, ca. 120 personer" },
+      { label: "Mindre selskap", value: "Grisehuset, ca. 35 personer" },
+      { label: "Begge lokaler", value: "kr 5 000,-" },
+      { label: "Kjøkkenhjelp", value: "kr 300,- pr. time" },
+    ],
+    image: {
+      src: "/lovable-uploads/f4efd3f9-3a18-4919-87e9-5870ea799bf2.png",
+      alt: "Gårdstunet i snø med lyslenke mellom bygningene",
+    },
+    metaTitle: "Julebord i Trøndelag - Myraunet Gård på Frosta",
+    metaDescription:
+      "Julebord på gård i Trøndelag. Gildesalen tar ca. 120 personer, Grisehuset ca. 35. Myraunet Gård på Frosta leier ut lokaler til julebord i november og desember.",
+  },
+  {
+    slug: "kurs-og-konferanse",
+    name: "Kurs og konferanse",
+    navLabel: "Kurs og konferanse",
+    lead: "Gildesalen settes med gruppebord. Stabburet brukes til lunsj og pauser om sommeren.",
+    body: [
+      "De tradisjonelle bygningene skaper en annen ramme rundt kurs og konferanser enn et hotell gjør. Ta med bedriften hit på en helg, og bland faglig innhold med sosialt samvær.",
+      "Gildesalen er den vi anbefaler til kurs. Salen er 180 kvm og kan settes med gruppebord. Om sommeren kan Stabburet brukes som lunsjlokale, slik at dere skifter rom gjennom dagen.",
+      "Vi har det meste av utstyret du trenger til konferansen. Ta kontakt for å høre hva som passer til opplegget deres. Blant dem som har hatt samlinger på gården er Nord-Trøndelag Høyre og Frostating.",
+    ],
+    venue: "Gildesalen, med Stabburet til lunsj",
+    season: "Hele året",
+    points: [
+      { label: "Lokale", value: "Gildesalen, 180 kvm" },
+      { label: "Bordoppsett", value: "Gruppebord eller langbord" },
+      { label: "Flerdagersleie", value: "kr 6 000,- ved tre dager eller mer" },
+      { label: "Lunsj", value: "Stabburet i sommersesongen" },
+    ],
+    image: {
+      src: "/lovable-uploads/1dbad16c-7bac-40e9-a9c9-38a5475118af.png",
+      alt: "Gildesalen satt opp med langbord under tømmertaket",
+    },
+    metaTitle: "Kurs og konferanse på gård i Trøndelag - Myraunet Gård",
+    metaDescription:
+      "Kurs og konferanse på Myraunet Gård, Frosta. Gildesalen er 180 kvm med gruppebord, kr 6 000,- ved tre dager eller mer. Nord-Trøndelag Høyre og Frostating har vært her.",
+  },
+];
+
+export const eventBySlug = (slug: string) =>
+  eventTypes.find((e) => e.slug === slug);
+
+/** Andre arrangement gården har hatt, hentet fra myraunet.no. */
+export const otherOccasions = [
+  "Fødselsdag",
+  "Jubileum",
+  "Konsert",
+  "Moteshow",
+  "Grillfest",
+  "Minnesamvær",
+];
+
+export const priceList = {
+  updated: "20. april 2020",
+  rows: [
+    { label: "Gildesalen", value: "kr 4 000,-" },
+    { label: "Gildesalen, tre dager eller mer", value: "kr 6 000,-" },
+    { label: "Grisehuset, ferdig vasket", value: "kr 2 500,-" },
+    { label: "Gildesalen og Grisehuset samlet", value: "kr 5 000,-" },
+    { label: "Rengjøring Gildesalen", value: "kr 1 000,-" },
+    { label: "Rengjøring Grisehuset", value: "kr 500,-" },
+    { label: "Kjøkkenhjelp", value: "kr 300,- pr. time" },
+  ],
+  notes: [
+    "Alle priser er inkl. mva.",
+    "Leietaker rydder selv lokalet klart til rengjøring.",
+    "Stabburet leies ut etter avtale. Ta kontakt for pris.",
+  ],
+};
+
+export type Milestone = {
+  year: string;
+  title: string;
+  text: string;
+};
+
+export const history: Milestone[] = [
+  {
+    year: "1557",
+    title: "Første gang nevnt",
+    text: "Gården er nevnt for første gang i 1557, da under navnet Myrum. Torger Myrum står oppført som bruker frem til 1559.",
+  },
+  {
+    year: "1600 - 1832",
+    title: "Under Prestbolet",
+    text: "Prestbolet i Frosta, kirkas eiendom, eide Myraunet i over to hundre år. Brukerne drev jorda som leilendinger på vegne av kirka.",
+  },
+  {
+    year: "1728",
+    title: "Skyld på 2 øre og 12 marklag",
+    text: "I matrikkelen ble gården ført opp med en skyld på 2 øre og 12 marklag. Skyld ble frem til 1838 regnet i spann, øre og marklag, der 1 spann var 3 øre eller 72 marklag, opprinnelig verdien av rundt 15 kilo smør.",
+  },
+  {
+    year: "1832",
+    title: "Første kongelige skjøte",
+    text: "Jakob Sørensen Myraunet fikk det første kongelige skjøtet på gården, og Myraunet gikk over i privat eie.",
+  },
+  {
+    year: "1835",
+    title: "Buskapen registrert",
+    text: "Gården hadde 1 hest, 3 kyr, 6 sauer og 1 gris. Såmengden var en halv tønne bygg, fire tønner havre og fem tønner poteter.",
+  },
+  {
+    year: "1864",
+    title: "54 dekar dyrka jord",
+    text: "Det ble registrert 54 dekar dyrka og 4 dekar dyrkbar jord, samt skog til brensel.",
+  },
+  {
+    year: "2013",
+    title: "Hanne og Gustav overtar",
+    text: "Hanne Askestad Myraune og Gustav Myraune driver gården videre som familiebedrift, med utleie av lokaler, tradisjonelt jordbruk og lokalmatkonseptet RÅGO.",
+  },
+];
+
+export const nameOrigin =
+  "Navnet er greitt. Sett sammen av myr og øfn, audn. Garden heiter fra begynnelsen av Myr, Myhr, Myer, Myrum, først i 1695 får garden navnet Myr-øfnet. Seinere skifter det mellom myr og Myrøfnet, Myraunet. Siste staving kommer av audn, et øde sted eller gard.";
+
+/** Brukerrekka slik den står i gårdshistorien på myraunet.no. */
+export const farmers: { years: string; name: string; current?: boolean }[] = [
+  { years: "2013 - ", name: "Gustav og Hanne Myraune", current: true },
+  { years: "1982 - 2012", name: "Lars og Kjersti Myraune" },
+  { years: "1941 - 1982", name: "Gustav og Juliane Myraunet" },
+  { years: "1913 - 1941", name: "Lars og Dina Myraune" },
+  { years: "1885 - 1913", name: "Gunnar Andreasen Hovdal" },
+  { years: "1868 - 1885", name: "Johan Arnt Andreasen Hovdal" },
+  { years: "1866 - 1868", name: "Torsten Olsen Vangberg" },
+  { years: "1864 - 1866", name: "Kristian Bernt Magnus Johan-Arntsen Richter" },
+  { years: "1832 - 1864", name: "Jakob Sørensen Myraunet" },
+  { years: "1797 - 1832", name: "Søren Aagesen" },
+  { years: "1780 - 1797", name: "Ole Olsen Myraunet" },
+  { years: "1757 - 1780", name: "Ole Amundsen Myraunet" },
+  { years: "1739 - 1757", name: "Anders Amundsen" },
+  { years: "1734 - 1739", name: "Amund Olsen" },
+  { years: "1728 - 1734", name: "Ole Myraunet" },
+  { years: "1723 - 1728", name: "Peder Arntsen" },
+  { years: "1690 - 1723", name: "Arnt Pedersen Myraunet" },
+  { years: "1684 - 1690", name: "Peders enke" },
+  { years: "1665 - 1684", name: "Peder Arntsen" },
+  { years: "1626 - 1665", name: "Thor Myr" },
+  { years: "1610 - 1626", name: "Hallstein Myr" },
+  { years: "1557 - 1559", name: "Torger Myrum" },
+];
+
+export const faqs = [
+  {
+    q: "Hvor mange gjester er det plass til?",
+    a: "Gildesalen er 180 kvm og tar rundt 120 personer. Grisehuset er 80 kvm og tar rundt 35 personer. Leier dere begge lokalene samlet, kan gjestene bevege seg mellom dem.",
+  },
+  {
+    q: "Hva koster det å leie lokalene?",
+    a: "Gildesalen koster kr 4 000,-, eller kr 6 000,- ved leie i tre dager eller mer. Grisehuset koster kr 2 500,- ferdig vasket. Begge lokaler samlet koster kr 5 000,-. Rengjøring og kjøkkenhjelp kommer i tillegg. Alle priser er inkl. mva., og gjelder fra 20. april 2020.",
+  },
+  {
+    q: "Hvordan bestiller vi?",
+    a: "Send forespørsel gjennom skjemaet her på siden, eller ring 952 84 333. Forespørselen er ikke bindende, og dere blir kontaktet så snart vi har sett den.",
+  },
+  {
+    q: "Kan vi ordne mat og drikke selv?",
+    a: "Ja. Leietaker står selv for mat og drikke, og kan benytte kjøkkenet i lokalet. Trenger dere en hånd, kan kjøkkenhjelp leies for kr 300,- pr. time.",
+  },
+  {
+    q: "Må vi rydde etter oss?",
+    a: "Leietaker rydder lokalet klart til rengjøring. Selve rengjøringen kan bestilles for kr 1 000,- i Gildesalen eller kr 500,- i Grisehuset. Grisehuset leies ut ferdig vasket.",
+  },
+  {
+    q: "Tilbyr dere overnatting?",
+    a: "Overnatting er dessverre ikke mulig på Myraunet Gård for øyeblikket.",
+  },
+  {
+    q: "Hvilke arrangement passer lokalene til?",
+    a: "Vi har erfaring med bryllup, konfirmasjon, fødselsdag, jubileum og julebord, i tillegg til kurs og konferanser. Lokalene har også vært brukt til konsert og moteshow.",
+  },
+  {
+    q: "Hvor ligger gården?",
+    a: "Myraunet Gård ligger i Kvamdalsvegen 355 på Frosta i Trøndelag, rundt en time fra Trondheim og en halvtime fra Levanger og Stjørdal.",
+  },
+];
+
+export const galleryImages: { src: string; alt: string; category: string }[] = [
+  {
+    src: "/lovable-uploads/d4692008-4440-4ffe-95df-334b4f30558e.png",
+    alt: "Gildesalen pyntet til selskap med hvite stoltrekk",
+    category: "lokaler",
+  },
+  {
+    src: "/lovable-uploads/1dbad16c-7bac-40e9-a9c9-38a5475118af.png",
+    alt: "Dekket langbord i Gildesalen med markblomster",
+    category: "lokaler",
+  },
+  {
+    src: "/lovable-uploads/36e34f85-cdf6-4bde-a478-d4f040423f4d.png",
+    alt: "Bordoppdekning i Gildesalen mot tømmerveggen",
+    category: "lokaler",
+  },
+  {
+    src: "/lovable-uploads/9664c9e0-24d8-4a26-8caa-43143ed756de.png",
+    alt: "Grisehuset med bordene satt i hestesko rundt midtstolpen",
+    category: "lokaler",
+  },
+  {
+    src: "/lovable-uploads/64204c1b-f0db-4865-8449-273f477e5561.png",
+    alt: "Grisehuset dekket til selskap",
+    category: "lokaler",
+  },
+  {
+    src: "/lovable-uploads/konferanse-arkiv.jpg",
+    alt: "Kurs i Gildesalen med prosjektor og deltakere",
+    category: "lokaler",
+  },
+  {
+    src: "/lovable-uploads/stabbur.jpg",
+    alt: "Stabburet på gårdstunet",
+    category: "lokaler",
+  },
+  {
+    src: "/lovable-uploads/8d693d87-1eb0-45ba-bdc9-98628553c653.png",
+    alt: "Bordblomster av markblomster",
+    category: "lokaler",
+  },
+  {
+    src: "/lovable-uploads/9bc8604c-b534-4a72-b0b3-e6f5281829a4.png",
+    alt: "Bryllup på tunet foran låven",
+    category: "arrangement",
+  },
+  {
+    src: "/lovable-uploads/005935e6-84ba-47b2-a569-9ffd38eef4bf.png",
+    alt: "Arrangement på tunet med telt og gjester",
+    category: "arrangement",
+  },
+  {
+    src: "/lovable-uploads/15847e16-8ae1-4f0d-9da0-94c9b5c3bb5f.png",
+    alt: "Langbord ute på tunet en sommerdag",
+    category: "arrangement",
+  },
+  {
+    src: "/lovable-uploads/9d5e3dda-5537-42f2-ade8-1aa6f765f160.png",
+    alt: "Folk på vei inn på gårdstunet under et arrangement",
+    category: "arrangement",
+  },
+  {
+    src: "/lovable-uploads/02e53cf1-81be-43b0-acda-0603c8aabe14.png",
+    alt: "Myraunet Gård med gårdsskiltet ved innkjørselen",
+    category: "gaarden",
+  },
+  {
+    src: "/lovable-uploads/03fa484d-31d8-47a4-bd67-4209b7ce2200.png",
+    alt: "Gårdshunden i trappa opp til våningshuset",
+    category: "gaarden",
+  },
+  {
+    src: "/lovable-uploads/5f16316b-2f82-427d-a822-701bdb6c99ed.png",
+    alt: "Arkivbilder fra gården på 1970- og 1980-tallet",
+    category: "gaarden",
+  },
+  {
+    src: "/lovable-uploads/d21b9ac7-9ce5-45e5-9eae-860aa7a09d45.png",
+    alt: "Arkivbilder fra gården på 1900- og 1950-tallet",
+    category: "gaarden",
+  },
+  { src: "/myraunet-gallery/natur/1.jpg", alt: "Sommer på Myraunet Gård", category: "natur" },
+  { src: "/myraunet-gallery/natur/2.jpg", alt: "Hagen på tunet en sommerdag", category: "natur" },
+  { src: "/myraunet-gallery/natur/3.jpg", alt: "Blomstrende busker på gården", category: "natur" },
+  { src: "/myraunet-gallery/natur/4.jpg", alt: "Steinbed med gammelt gårdsredskap", category: "natur" },
+  { src: "/myraunet-gallery/natur/5.jpg", alt: "Gårdsvegen og jordene på Frosta", category: "natur" },
+  { src: "/myraunet-gallery/natur/6.jpg", alt: "Sommerhimmel over tunet", category: "natur" },
+  { src: "/lovable-uploads/f4efd3f9-3a18-4919-87e9-5870ea799bf2.png", alt: "Gårdstunet i snø med lyslenke", category: "vinter" },
+  { src: "/lovable-uploads/53837eb3-bffa-4ebf-b555-13df96e1db24.png", alt: "Gårdsskiltet i snø en vinterkveld", category: "vinter" },
+  { src: "/myraunet-gallery/vinter/1.jpg", alt: "Vinterlys over jordene", category: "vinter" },
+  { src: "/myraunet-gallery/vinter/2.jpg", alt: "Rimfrost og soloppgang på Frosta", category: "vinter" },
+  { src: "/myraunet-gallery/vinter/3.jpg", alt: "Opplyste trær på tunet en vinterkveld", category: "vinter" },
+  { src: "/myraunet-gallery/vinter/4.jpg", alt: "Vinterhimmel i rosa over gården", category: "vinter" },
+];
+
+export const galleryCategories = [
+  { id: "alle", label: "Alle" },
+  { id: "lokaler", label: "Lokaler" },
+  { id: "arrangement", label: "Arrangement" },
+  { id: "gaarden", label: "Gården" },
+  { id: "natur", label: "Natur" },
+  { id: "vinter", label: "Vinter" },
+];
