@@ -13,7 +13,7 @@ import { priceList, site, venues } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Priser for leie av lokaler",
   description:
-    "Gildesalen kr 4 000,-, Grisehuset kr 2 500,- ferdig vasket, begge lokaler kr 5 000,-. Rengjøring og kjøkkenhjelp i tillegg. Alle priser inkl. mva.",
+    "Gildesalen kr 4 000,-, Grisehuset kr 2 500,- ferdig vasket, begge lokaler kr 5 000,-. Rengjøring og kjøkkenhjelp i tillegg. Alle priser inkl. mva.",
   alternates: { canonical: "/priser" },
 };
 
@@ -27,7 +27,7 @@ const included = [
 const notIncluded = [
   "Mat og drikke, som dere ordner selv",
   "Rengjøring, om dere ikke bestiller det",
-  "Kjøkkenhjelp, kr 300,- pr. time",
+  "Kjøkkenhjelp, kr 300,- pr. time",
   "Overnatting, som ikke tilbys for øyeblikket",
 ];
 

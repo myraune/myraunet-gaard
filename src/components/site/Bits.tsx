@@ -180,26 +180,40 @@ export function PageHero({
 export function CtaBand({
   title = "Se om datoen er ledig",
   lead = "Send en uforpliktende forespørsel med dato og antall gjester, så tar vi kontakt.",
+  children,
 }: {
   title?: string;
   lead?: string;
+  children?: ReactNode;
 }) {
   return (
     <section className="bg-forest-dark py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="grid items-end gap-8 md:grid-cols-[1fr_auto]">
-          <div className="max-w-2xl">
-            <h2 className="font-serif text-3xl font-light leading-tight text-white md:text-4xl">
-              {title}
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-cream/75">{lead}</p>
+        {children ? (
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.4fr] lg:gap-16">
+            <div className="max-w-2xl">
+              <h2 className="font-serif text-3xl font-light leading-tight text-white md:text-4xl">
+                {title}
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-cream/75">{lead}</p>
+            </div>
+            <div>{children}</div>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <ButtonLink href="/kontakt" variant="light">
-              Send forespørsel
-            </ButtonLink>
+        ) : (
+          <div className="grid items-end gap-8 md:grid-cols-[1fr_auto]">
+            <div className="max-w-2xl">
+              <h2 className="font-serif text-3xl font-light leading-tight text-white md:text-4xl">
+                {title}
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-cream/75">{lead}</p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <ButtonLink href="/kontakt" variant="light">
+                Send forespørsel
+              </ButtonLink>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

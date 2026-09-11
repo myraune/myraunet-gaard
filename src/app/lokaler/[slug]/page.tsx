@@ -10,6 +10,7 @@ import {
   SectionHead,
 } from "@/components/site/Bits";
 import PriceTable from "@/components/site/PriceTable";
+import DateCheck from "@/components/site/DateCheck";
 import { site, venueBySlug, venues } from "@/lib/content";
 
 export function generateStaticParams() {
@@ -127,8 +128,21 @@ export default async function VenuePage({
         </div>
       </Section>
 
+      <Section tone="muted">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.5fr] lg:gap-16">
+          <SectionHead
+            eyebrow="Første spørsmål"
+            title={`Er ${venue.name} ledig den dagen?`}
+            lead="Tre felt, så svarer vi. Resten tar vi når vi snakkes."
+          />
+          <div className="lg:pt-3">
+            <DateCheck anledning="Arrangement" lokale={venue.name} />
+          </div>
+        </div>
+      </Section>
+
       {venue.images.length > 1 && (
-        <Section tone="muted">
+        <Section>
           <SectionHead eyebrow="Bilder" title={`${venue.name} i bilder`} />
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {venue.images.map((image) => (
@@ -145,7 +159,7 @@ export default async function VenuePage({
         </Section>
       )}
 
-      <Section>
+      <Section tone="muted">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
           <SectionHead
             eyebrow="Priser"
@@ -156,7 +170,7 @@ export default async function VenuePage({
         </div>
       </Section>
 
-      <Section tone="muted">
+      <Section>
         <SectionHead eyebrow="Andre lokaler" title="Se også" />
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {others.map((other) => (

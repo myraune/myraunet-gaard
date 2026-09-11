@@ -11,10 +11,14 @@ import {
 } from "@/components/site/Bits";
 import PriceTable from "@/components/site/PriceTable";
 import FaqList from "@/components/site/FaqList";
+import DateCheck from "@/components/site/DateCheck";
 import { eventBySlug, eventTypes, site } from "@/lib/content";
 
 export function generateStaticParams() {
-  return eventTypes.map((event) => ({ slug: event.slug }));
+  // Bryllup har egen side i /arrangement/bryllup
+  return eventTypes
+    .filter((event) => event.slug !== "bryllup")
+    .map((event) => ({ slug: event.slug }));
 }
 
 export async function generateMetadata({
@@ -96,6 +100,19 @@ export default async function EventPage({
       </Section>
 
       <Section tone="muted">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.5fr] lg:gap-16">
+          <SectionHead
+            eyebrow="Første spørsmål"
+            title="Er datoen ledig?"
+            lead="Tre felt, så svarer vi. Resten tar vi når vi snakkes."
+          />
+          <div className="lg:pt-3">
+            <DateCheck anledning={event.navLabel} lokale={event.venue} />
+          </div>
+        </div>
+      </Section>
+
+      <Section>
         <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
           <SectionHead
             eyebrow="Priser"
@@ -106,14 +123,14 @@ export default async function EventPage({
         </div>
       </Section>
 
-      <Section>
+      <Section tone="muted">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:gap-20">
           <SectionHead eyebrow="Spørsmål" title="Godt å vite på forhånd" />
           <FaqList limit={5} />
         </div>
       </Section>
 
-      <Section tone="muted">
+      <Section>
         <SectionHead eyebrow="Andre anledninger" title="Se også" />
         <div className="mt-10 grid gap-4 sm:grid-cols-3">
           {others.map((other) => (

@@ -12,6 +12,7 @@ import EventGrid from "@/components/site/EventGrid";
 import PriceTable from "@/components/site/PriceTable";
 import FaqList from "@/components/site/FaqList";
 import MapBlock from "@/components/site/MapBlock";
+import DateCheck from "@/components/site/DateCheck";
 import { faqs, galleryImages, otherOccasions, site, venues } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -28,12 +29,12 @@ const faqJsonLd = {
   })),
 };
 
-const heroImage = "/lovable-uploads/02e53cf1-81be-43b0-acda-0603c8aabe14.png";
+const heroImage = "/lovable-uploads/9bc8604c-b534-4a72-b0b3-e6f5281829a4.png";
 
 const keyNumbers = [
+  { value: "120", label: "Gjester i Gildesalen, gårdens gamle fjøs" },
+  { value: "kr 7 000", label: "For Gildesalen fredag til søndag, inkl. rengjøring" },
   { value: "1557", label: "Første gang gården er nevnt" },
-  { value: "180 kvm", label: "Gildesalen, gårdens gamle fjøs" },
-  { value: "120", label: "Gjester i det største lokalet" },
 ];
 
 export default function Home() {
@@ -43,7 +44,7 @@ export default function Home() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={heroImage}
-          alt="Myraunet Gård med gårdstunet på Frosta"
+          alt="Bryllupsfølge på tunet foran den røde låven på Myraunet Gård"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.90)_0%,rgba(0,0,0,0.78)_24%,rgba(0,0,0,0.40)_50%,rgba(0,0,0,0.30)_100%)]" />
@@ -51,18 +52,18 @@ export default function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.2)_45%,transparent_70%)]" />
 
         <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 md:px-8 md:pb-24">
-          <Eyebrow tone="light">Frosta i Trøndelag</Eyebrow>
+          <Eyebrow tone="light">Selskapslokaler på Frosta, en time fra Trondheim</Eyebrow>
           <h1 className="mt-5 max-w-4xl font-serif text-[2.6rem] font-light leading-[1.05] text-white md:text-6xl lg:text-7xl">
-            Selskapslokaler i et gårdstun som har stått siden 1557
+            Fest på gården, med egen mat og drikke og ingen sluttid
           </h1>
           <p className="mt-7 max-w-2xl text-base leading-relaxed text-cream/85 md:text-lg">
-            Bryllup i det gamle fjøset, konfirmasjon i Grisehuset, julebord og
-            konferanser i tømmer og mur. Dere leier lokalet og bestemmer resten
-            selv.
+            Gildesalen tar 120 gjester og koster kr 7 000 for hele helga.
+            Bryllup, konfirmasjon, julebord og kurs i bygninger som har stått
+            her siden 1557.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <ButtonLink href="/kontakt" variant="light">
-              Send forespørsel
+            <ButtonLink href="/arrangement/bryllup" variant="light">
+              Bryllup på gården
             </ButtonLink>
             <Link
               href="/lokaler"
@@ -71,6 +72,18 @@ export default function Home() {
               Se lokalene
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-background">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:px-8 lg:grid-cols-[0.7fr_1.6fr] lg:items-end lg:gap-16">
+          <div>
+            <Eyebrow>Første spørsmål</Eyebrow>
+            <h2 className="mt-3 font-serif text-2xl font-light text-foreground md:text-3xl">
+              Er datoen ledig?
+            </h2>
+          </div>
+          <DateCheck anledning="Arrangement" />
         </div>
       </section>
 

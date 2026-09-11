@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
+import StickyCta from "@/components/site/StickyCta";
 import { site, venues } from "@/lib/content";
 
 const cormorant = Cormorant_Garamond({
@@ -120,7 +121,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="nb" className={`${cormorant.variable} ${montserrat.variable}`}>
-      <body className="min-h-screen bg-background antialiased">
+      <body className="min-h-screen bg-background pb-[76px] antialiased lg:pb-0">
         <a
           href="#innhold"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
@@ -130,6 +131,7 @@ export default function RootLayout({
         <Header overHero />
         <main id="innhold">{children}</main>
         <Footer />
+        <StickyCta />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

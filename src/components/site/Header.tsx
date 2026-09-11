@@ -18,15 +18,19 @@ const links: NavLink[] = [
     href: "/lokaler",
     children: venues.map((v) => ({ label: v.name, href: `/lokaler/${v.slug}` })),
   },
+  { label: "Bryllup", href: "/arrangement/bryllup" },
   {
     label: "Arrangement",
     href: "/arrangement",
-    children: eventTypes.map((e) => ({
-      label: e.navLabel,
-      href: `/arrangement/${e.slug}`,
-    })),
+    children: eventTypes
+      .filter((e) => e.slug !== "bryllup")
+      .map((e) => ({ label: e.navLabel, href: `/arrangement/${e.slug}` })),
   },
   { label: "Priser", href: "/priser" },
+];
+
+/** Sekundært, kun i mobilmenyen. På desktop lever disse i footeren. */
+const secondary = [
   { label: "Galleri", href: "/galleri" },
   { label: "Historie", href: "/historie" },
   { label: "Familiebedriften", href: "/familiebedriften" },
@@ -44,11 +48,6 @@ export default function Header({ overHero = false }: { overHero?: boolean }) {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    setMenuOpen(false);
-    setOpenGroup(null);
-  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -82,7 +81,10 @@ export default function Header({ overHero = false }: { overHero?: boolean }) {
         <nav className="hidden items-center gap-1 lg:flex">
           {links.map((link) => {
             const active =
-              pathname === link.href || pathname.startsWith(`${link.href}/`);
+              pathname === link.href ||
+              (link.children !== undefined &&
+                pathname.startsWith(`${link.href}/`) &&
+                !(link.href === "/arrangement" && pathname === "/arrangement/bryllup"));
             return (
               <div
                 key={link.href}
@@ -113,6 +115,7 @@ export default function Header({ overHero = false }: { overHero?: boolean }) {
                         <Link
                           key={child.href}
                           href={child.href}
+                          onClick={() => setOpenGroup(null)}
                           className="block px-4 py-2.5 text-sm text-foreground/80 transition-colors hover:bg-secondary hover:text-primary"
                         >
                           {child.label}
@@ -133,7 +136,7 @@ export default function Header({ overHero = false }: { overHero?: boolean }) {
                 : "bg-primary text-primary-foreground hover:bg-forest-dark"
             }`}
           >
-            Send forespørsel
+            Sjekk ledig dato
           </Link>
         </nav>
 
@@ -168,6 +171,7 @@ export default function Header({ overHero = false }: { overHero?: boolean }) {
               <div key={link.href} className="border-b border-border/60 py-1">
                 <Link
                   href={link.href}
+                  onClick={() => setMenuOpen(false)}
                   className="block py-3.5 font-serif text-2xl text-foreground"
                 >
                   {link.label}
@@ -178,6 +182,7 @@ export default function Header({ overHero = false }: { overHero?: boolean }) {
                       <Link
                         key={child.href}
                         href={child.href}
+                        onClick={() => setMenuOpen(false)}
                         className="block py-2 text-sm uppercase tracking-[0.12em] text-muted-foreground"
                       >
                         {child.label}
@@ -188,11 +193,25 @@ export default function Header({ overHero = false }: { overHero?: boolean }) {
               </div>
             ))}
 
+            <div className="flex flex-wrap gap-x-6 gap-y-2 pt-6">
+              {secondary.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="py-1 text-sm uppercase tracking-[0.12em] text-muted-foreground"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+
             <Link
               href="/kontakt"
+              onClick={() => setMenuOpen(false)}
               className="mt-8 block bg-primary px-6 py-4 text-center text-sm font-medium uppercase tracking-[0.12em] text-primary-foreground"
             >
-              Send forespørsel
+              Sjekk ledig dato
             </Link>
             <a
               href={site.phoneHref}

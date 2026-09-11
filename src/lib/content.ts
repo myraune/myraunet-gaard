@@ -55,11 +55,11 @@ export const venues: Venue[] = [
       { label: "Areal", value: "180 kvm" },
       { label: "Kapasitet", value: "ca. 120 personer" },
       { label: "Bordoppsett", value: "Langbord eller gruppebord" },
-      { label: "Leiepris", value: "kr 4 000,-" },
+      { label: "Leiepris", value: "kr 4 000,-" },
     ],
     suits: ["Bryllup", "Jubileum", "Julebord", "Kurs og konferanse", "Konsert"],
-    price: "kr 4 000,-",
-    priceNote: "Tre dager eller mer: kr 6 000,-",
+    price: "kr 4 000,-",
+    priceNote: "Tre dager eller mer: kr 6 000,-",
     images: [
       {
         src: "/lovable-uploads/d4692008-4440-4ffe-95df-334b4f30558e.png",
@@ -91,10 +91,10 @@ export const venues: Venue[] = [
       { label: "Areal", value: "80 kvm" },
       { label: "Kapasitet", value: "ca. 35 personer" },
       { label: "Bordoppsett", value: "Langbord eller hestesko" },
-      { label: "Leiepris", value: "kr 2 500,- ferdig vasket" },
+      { label: "Leiepris", value: "kr 2 500,- ferdig vasket" },
     ],
     suits: ["Konfirmasjon", "Fødselsdag", "Grillfest", "Mindre selskap"],
-    price: "kr 2 500,-",
+    price: "kr 2 500,-",
     priceNote: "Ferdig vasket",
     images: [
       {
@@ -157,7 +157,7 @@ export const eventTypes: EventType[] = [
     lead: "Gildesalen tar rundt 120 gjester. Dere tar med egen mat, eget program og egen musikk.",
     body: [
       "Et bryllup i Gildesalen foregår i et gammelt fjøs med tømmer, historiske gjenstander på veggene og gårdstunet rett utenfor døra. Salen tar rundt 120 personer, og kan settes med langbord for hele følget eller gruppebord om dere vil ha løsere stemning.",
-      "Dere leier lokalet, og står fritt til å velge mat, drikke, forlovere og program selv. Kjøkkenet kan brukes av leietaker, og kjøkkenhjelp kan leies for kr 300,- pr. time. Grisehuset kan leies i tillegg dersom dere trenger et rom til mingling eller kaffe dagen derpå.",
+      "Dere leier lokalet, og står fritt til å velge mat, drikke, forlovere og program selv. Kjøkkenet kan brukes av leietaker, og kjøkkenhjelp kan leies for kr 300,- pr. time. Grisehuset kan leies i tillegg dersom dere trenger et rom til mingling eller kaffe dagen derpå.",
       "Vær tidlig ute med datoen. Lørdager i juni, juli og august går først.",
     ],
     venue: "Gildesalen",
@@ -165,7 +165,7 @@ export const eventTypes: EventType[] = [
     points: [
       { label: "Lokale", value: "Gildesalen, 180 kvm" },
       { label: "Gjester", value: "ca. 120 personer" },
-      { label: "Leiepris", value: "kr 4 000,- (fra kr 6 000,- ved tre dager eller mer)" },
+      { label: "Leiepris", value: "kr 4 000,- (fra kr 6 000,- ved tre dager eller mer)" },
       { label: "Mat og drikke", value: "Dere ordner selv, kjøkken kan benyttes" },
     ],
     image: {
@@ -174,16 +174,16 @@ export const eventTypes: EventType[] = [
     },
     metaTitle: "Bryllup i Trøndelag - Myraunet Gård på Frosta",
     metaDescription:
-      "Feir bryllupet i Gildesalen på Myraunet Gård, Frosta. 180 kvm gammelt fjøs med plass til ca. 120 gjester. Leiepris kr 4 000,-. Dere velger mat og program selv.",
+      "Feir bryllupet i Gildesalen på Myraunet Gård, Frosta. 180 kvm gammelt fjøs med plass til ca. 120 gjester. Leiepris kr 4 000,-. Dere velger mat og program selv.",
   },
   {
     slug: "konfirmasjon",
     name: "Konfirmasjon",
     navLabel: "Konfirmasjon",
-    lead: "Grisehuset er det mest brukte lokalet til konfirmasjon. Rundt 35 gjester, kr 2 500,- ferdig vasket.",
+    lead: "Grisehuset er det mest brukte lokalet til konfirmasjon. Rundt 35 gjester, kr 2 500,- ferdig vasket.",
     body: [
       "Grisehuset er 80 kvm med tømmervegger og mur, og har vært brukt til konfirmasjoner i mange år. Med langbord eller hestesko sitter rundt 35 gjester godt.",
-      "Skal dere være flere, kan Gildesalen leies i stedet, eller begge lokaler samlet for kr 5 000,-. Grillen kan settes rett utenfor Grisehuset, og gjestene kan bevege seg mellom ute og inne.",
+      "Skal dere være flere, kan Gildesalen leies i stedet, eller begge lokaler samlet for kr 5 000,-. Grillen kan settes rett utenfor Grisehuset, og gjestene kan bevege seg mellom ute og inne.",
       "Grisehuset leies ut ferdig vasket. Leietaker rydder lokalet klart til rengjøring etter bruk.",
     ],
     venue: "Grisehuset",
@@ -191,8 +191,8 @@ export const eventTypes: EventType[] = [
     points: [
       { label: "Lokale", value: "Grisehuset, 80 kvm" },
       { label: "Gjester", value: "ca. 35 personer" },
-      { label: "Leiepris", value: "kr 2 500,- ferdig vasket" },
-      { label: "Flere gjester", value: "Gildesalen, eller begge lokaler kr 5 000,-" },
+      { label: "Leiepris", value: "kr 2 500,- ferdig vasket" },
+      { label: "Flere gjester", value: "Gildesalen, eller begge lokaler kr 5 000,-" },
     ],
     image: {
       src: "/lovable-uploads/64204c1b-f0db-4865-8449-273f477e5561.png",
@@ -200,7 +200,7 @@ export const eventTypes: EventType[] = [
     },
     metaTitle: "Lokale til konfirmasjon på Frosta - Myraunet Gård",
     metaDescription:
-      "Grisehuset på Myraunet Gård tar ca. 35 gjester og koster kr 2 500,- ferdig vasket. Mye brukt til konfirmasjon på Frosta i Trøndelag.",
+      "Grisehuset på Myraunet Gård tar ca. 35 gjester og koster kr 2 500,- ferdig vasket. Mye brukt til konfirmasjon på Frosta i Trøndelag.",
   },
   {
     slug: "julebord",
@@ -217,8 +217,8 @@ export const eventTypes: EventType[] = [
     points: [
       { label: "Stort selskap", value: "Gildesalen, ca. 120 personer" },
       { label: "Mindre selskap", value: "Grisehuset, ca. 35 personer" },
-      { label: "Begge lokaler", value: "kr 5 000,-" },
-      { label: "Kjøkkenhjelp", value: "kr 300,- pr. time" },
+      { label: "Begge lokaler", value: "kr 5 000,-" },
+      { label: "Kjøkkenhjelp", value: "kr 300,- pr. time" },
     ],
     image: {
       src: "/lovable-uploads/f4efd3f9-3a18-4919-87e9-5870ea799bf2.png",
@@ -243,7 +243,7 @@ export const eventTypes: EventType[] = [
     points: [
       { label: "Lokale", value: "Gildesalen, 180 kvm" },
       { label: "Bordoppsett", value: "Gruppebord eller langbord" },
-      { label: "Flerdagersleie", value: "kr 6 000,- ved tre dager eller mer" },
+      { label: "Flerdagersleie", value: "kr 6 000,- ved tre dager eller mer" },
       { label: "Lunsj", value: "Stabburet i sommersesongen" },
     ],
     image: {
@@ -252,7 +252,7 @@ export const eventTypes: EventType[] = [
     },
     metaTitle: "Kurs og konferanse på gård i Trøndelag - Myraunet Gård",
     metaDescription:
-      "Kurs og konferanse på Myraunet Gård, Frosta. Gildesalen er 180 kvm med gruppebord, kr 6 000,- ved tre dager eller mer. Nord-Trøndelag Høyre og Frostating har vært her.",
+      "Kurs og konferanse på Myraunet Gård, Frosta. Gildesalen er 180 kvm med gruppebord, kr 6 000,- ved tre dager eller mer. Nord-Trøndelag Høyre og Frostating har vært her.",
   },
 ];
 
@@ -272,13 +272,13 @@ export const otherOccasions = [
 export const priceList = {
   updated: "20. april 2020",
   rows: [
-    { label: "Gildesalen", value: "kr 4 000,-" },
-    { label: "Gildesalen, tre dager eller mer", value: "kr 6 000,-" },
-    { label: "Grisehuset, ferdig vasket", value: "kr 2 500,-" },
-    { label: "Gildesalen og Grisehuset samlet", value: "kr 5 000,-" },
-    { label: "Rengjøring Gildesalen", value: "kr 1 000,-" },
-    { label: "Rengjøring Grisehuset", value: "kr 500,-" },
-    { label: "Kjøkkenhjelp", value: "kr 300,- pr. time" },
+    { label: "Gildesalen", value: "kr 4 000,-" },
+    { label: "Gildesalen, tre dager eller mer", value: "kr 6 000,-" },
+    { label: "Grisehuset, ferdig vasket", value: "kr 2 500,-" },
+    { label: "Gildesalen og Grisehuset samlet", value: "kr 5 000,-" },
+    { label: "Rengjøring Gildesalen", value: "kr 1 000,-" },
+    { label: "Rengjøring Grisehuset", value: "kr 500,-" },
+    { label: "Kjøkkenhjelp", value: "kr 300,- pr. time" },
   ],
   notes: [
     "Alle priser er inkl. mva.",
@@ -367,7 +367,7 @@ export const faqs = [
   },
   {
     q: "Hva koster det å leie lokalene?",
-    a: "Gildesalen koster kr 4 000,-, eller kr 6 000,- ved leie i tre dager eller mer. Grisehuset koster kr 2 500,- ferdig vasket. Begge lokaler samlet koster kr 5 000,-. Rengjøring og kjøkkenhjelp kommer i tillegg. Alle priser er inkl. mva., og gjelder fra 20. april 2020.",
+    a: "Gildesalen koster kr 4 000,-, eller kr 6 000,- ved leie i tre dager eller mer. Grisehuset koster kr 2 500,- ferdig vasket. Begge lokaler samlet koster kr 5 000,-. Rengjøring og kjøkkenhjelp kommer i tillegg. Alle priser er inkl. mva., og gjelder fra 20. april 2020.",
   },
   {
     q: "Hvordan bestiller vi?",
@@ -375,15 +375,23 @@ export const faqs = [
   },
   {
     q: "Kan vi ordne mat og drikke selv?",
-    a: "Ja. Leietaker står selv for mat og drikke, og kan benytte kjøkkenet i lokalet. Trenger dere en hånd, kan kjøkkenhjelp leies for kr 300,- pr. time.",
+    a: "Ja. Leietaker står selv for mat og drikke, og kan benytte kjøkkenet i lokalet. Trenger dere en hånd, kan kjøkkenhjelp leies for kr 300,- pr. time.",
   },
   {
     q: "Må vi rydde etter oss?",
-    a: "Leietaker rydder lokalet klart til rengjøring. Selve rengjøringen kan bestilles for kr 1 000,- i Gildesalen eller kr 500,- i Grisehuset. Grisehuset leies ut ferdig vasket.",
+    a: "Leietaker rydder lokalet klart til rengjøring. Selve rengjøringen kan bestilles for kr 1 000,- i Gildesalen eller kr 500,- i Grisehuset. Grisehuset leies ut ferdig vasket.",
+  },
+  {
+    q: "Hvor sent kan festen vare?",
+    a: "Det er ingen faste sluttider og ingen regler for musikk. Gården ligger for seg selv.",
+  },
+  {
+    q: "Er det parkering?",
+    a: "Ja, det er plass til over 100 biler på tunet.",
   },
   {
     q: "Tilbyr dere overnatting?",
-    a: "Overnatting er dessverre ikke mulig på Myraunet Gård for øyeblikket.",
+    a: "Gården har ikke egne senger, men Frosta har hotell, leiligheter, sjøbuer og mange Airbnb-hjem innen kort kjøretur. Se forslagene på bryllupssiden.",
   },
   {
     q: "Hvilke arrangement passer lokalene til?",
@@ -498,3 +506,132 @@ export const galleryCategories = [
   { id: "natur", label: "Natur" },
   { id: "vinter", label: "Vinter" },
 ];
+
+/** Praktiske fakta bekreftet av Andreas 2026-09-11. */
+export const practical = {
+  parking: "Plass til over 100 biler på tunet",
+  rules: "Ingen faste sluttider, ingen regler for musikk",
+  ceremony: "Vielsen kan holdes ute på tunet",
+  catering: "Dere tar med egen mat og drikke, kjøkkenet følger med",
+  distance: "Rundt en time fra Trondheim, en halvtime fra Stjørdal og Levanger",
+};
+
+export type Lodging = {
+  name: string;
+  type: string;
+  detail: string;
+  url: string;
+};
+
+/** Overnatting på Frosta. Gården har ikke egne senger. Kilde: visitfrosta.no + stedenes egne sider. */
+export const lodging: Lodging[] = [
+  {
+    name: "Frosta Brygge",
+    type: "Hotell",
+    detail: "Hotell ved sjøen med egen sjømatrestaurant. Rom fra kr 1 800 per natt.",
+    url: "https://frostabrygge.no/hotell/",
+  },
+  {
+    name: "Hauganfjæra Camping",
+    type: "Leiligheter",
+    detail: "Fem leiligheter pusset opp i 2024, to med seks sengeplasser og tre med tre til fire. Utsikt mot Trondheim.",
+    url: "https://hauganfjara.no/leiligheter",
+  },
+  {
+    name: "Frosta Fjordbuer",
+    type: "Hytter",
+    detail: "Sjøbuer ved fjorden med kjøkken og bad.",
+    url: "https://frosta-fjordbuer.no/Norsk/index_n.html",
+  },
+  {
+    name: "Vågen Fjordbuer",
+    type: "Hytter",
+    detail: "Tre hytter ved sjøen med kjøkken og bad, sentralt på Frosta.",
+    url: "https://www.facebook.com/VaagenFjordbuer/",
+  },
+  {
+    name: "Klostergården Tautra",
+    type: "Gjestegård",
+    detail: "Ute på Tautra, over moloen fra Frosta. Senger med utsikt over fjorden, ved klosterruinene.",
+    url: "https://klostergardentautra.no/nb/",
+  },
+  {
+    name: "Airbnb på Frosta",
+    type: "Private hjem og hytter",
+    detail: "Størst utvalg for gjester som vil bo tett på gården. Mange hele hus for familier og vennegjenger.",
+    url: "https://www.airbnb.com/frosta-municipality-norway/stays",
+  },
+];
+
+export const weddingFaqs = [
+  {
+    q: "Kan vi ha vielsen på gården?",
+    a: "Ja. Vielsen kan holdes ute på tunet, med Gildesalen som festlokale etterpå. Frosta kirke ligger også i nærheten om dere vil gifte dere der først.",
+  },
+  {
+    q: "Kan vi ta med egen mat og drikke?",
+    a: "Ja. Dere leier lokalet og står helt fritt til å velge mat, drikke og hvem som serverer. Kjøkkenet følger med, og kjøkkenhjelp kan leies for kr 300,- pr. time.",
+  },
+  {
+    q: "Hvor sent kan festen vare?",
+    a: "Det er ingen faste sluttider og ingen regler for musikk. Gården ligger for seg selv.",
+  },
+  {
+    q: "Hva koster det for hele helga?",
+    a: "Gildesalen i tre dager eller mer koster kr 6 000,-. Med rengjøring på kr 1 000,- blir det kr 7 000,- for fredag til søndag. Alle priser er inkl. mva.",
+  },
+  {
+    q: "Hvor kan gjestene overnatte?",
+    a: "Gården har ikke egne senger, men Frosta har hotell, leiligheter, sjøbuer og mange Airbnb-hjem innen kort kjøretur. Se lista lenger ned på siden.",
+  },
+  {
+    q: "Er det parkering?",
+    a: "Ja, det er plass til over 100 biler på tunet.",
+  },
+  {
+    q: "Hvor tidlig bør vi bestille?",
+    a: "Lørdager i juni, juli og august går først. Send dato så svarer vi om den er ledig.",
+  },
+];
+
+export const weddingDay = [
+  {
+    step: "Fredag",
+    title: "Dere får nøkkelen",
+    text: "Pynt Gildesalen i deres eget tempo, kjør inn drikke og la leverandørene rigge. Ingen andre bruker lokalet samme helg.",
+  },
+  {
+    step: "Lørdag",
+    title: "Vielse på tunet, fest i fjøset",
+    text: "Vielse ute på tunet eller i Frosta kirke, bilder foran den røde låven, og middag med langbord til 120 gjester i Gildesalen. Festen varer så lenge dere vil.",
+  },
+  {
+    step: "Søndag",
+    title: "Frokost dagen derpå",
+    text: "Grisehuset passer til dagen derpå med kaffe og rester, om dere vil samle de nærmeste før hjemreisen. Rydd klart til rengjøring, så tar vi resten.",
+  },
+];
+
+export const weddingIncluded = [
+  "Gildesalen for dere alene hele helga",
+  "Bord og stoler i salen, langbord eller gruppebord",
+  "Kjøkken til leietakers disposisjon",
+  "Tunet til vielse, mingling og bilder",
+  "Parkering til over 100 biler",
+];
+
+export const weddingYouArrange = [
+  "Mat og drikke, akkurat slik dere vil ha det",
+  "Servering, eller lei kjøkkenhjelp for kr 300,- pr. time",
+  "Pynt, blomster og musikk",
+  "Overnatting for gjestene, se forslagene under",
+];
+
+export const weddingPriceExample = {
+  rows: [
+    { label: "Gildesalen, fredag til søndag", value: "kr 6 000,-" },
+    { label: "Rengjøring etter festen", value: "kr 1 000,-" },
+  ],
+  total: { label: "Hele helga", value: "kr 7 000,-" },
+  note: "Inkl. mva. Grisehuset til dagen derpå og kjøkkenhjelp avtales i tillegg.",
+};

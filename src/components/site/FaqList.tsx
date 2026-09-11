@@ -6,8 +6,15 @@ import {
 } from "@/components/ui/accordion";
 import { faqs } from "@/lib/content";
 
-export default function FaqList({ limit }: { limit?: number }) {
-  const items = limit ? faqs.slice(0, limit) : faqs;
+export default function FaqList({
+  limit,
+  items: custom,
+}: {
+  limit?: number;
+  items?: { q: string; a: string }[];
+}) {
+  const source = custom ?? faqs;
+  const items = limit ? source.slice(0, limit) : source;
 
   return (
     <Accordion type="single" collapsible className="border-t border-border">
