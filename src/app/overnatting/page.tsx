@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CtaBand, PageHero, Section, SectionHead } from "@/components/site/Bits";
 import LodgingCard from "@/components/site/LodgingCard";
+import PlatformRow from "@/components/site/PlatformRow";
 import { lodging, practical } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const summary = [
-  { value: "6", label: "steder på Frosta, pluss Airbnb" },
+  { value: "5", label: "steder på Frosta, pluss Airbnb og Booking.com" },
   { value: "kr 990", label: "billigste natt, leilighet på Hauganfjæra" },
   { value: "40", label: "senger samlet hos Frosta Fjordbuer" },
   { value: "100+", label: "parkeringsplasser på tunet" },
@@ -42,7 +43,7 @@ export default function OvernattingPage() {
       <Section>
         <SectionHead
           eyebrow="Stedene"
-          title="Seks steder, fra hotellrom til hele hus"
+          title="Fem steder, fra hotellrom til sjøbuer"
           lead={`Priser og tall er hentet fra stedenes egne sider og kan endre seg. Book direkte hos dem. ${practical.parking}.`}
         />
         <div className="mt-6">
@@ -53,11 +54,22 @@ export default function OvernattingPage() {
       </Section>
 
       <Section tone="muted">
+        <SectionHead
+          eyebrow="Finn flere"
+          title="Resten av Frosta ligger på Airbnb og Booking.com"
+          lead="Hele hus for familier og vennegjenger finner dere oftest på Airbnb. Booking.com dekker også Levanger og Stjørdal, en halvtime unna."
+        />
+        <div className="mt-10">
+          <PlatformRow />
+        </div>
+      </Section>
+
+      <Section>
         <div className="grid gap-10 md:grid-cols-3 md:gap-12">
           <div>
             <h3 className="font-serif text-2xl font-light text-foreground">Hele følget samlet</h3>
             <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-              Frosta Fjordbuer har 40 senger på ett sted. Klostergården har rundt 30. Book tidlig, så kan storfamilien bo vegg i vegg.
+              Frosta Fjordbuer drives av slekta vår og har 40 senger på ett sted. Si at dere skal feire på Myraunet når dere booker. Klostergården har rundt 30.
             </p>
           </div>
           <div>
@@ -69,7 +81,7 @@ export default function OvernattingPage() {
           <div>
             <h3 className="font-serif text-2xl font-light text-foreground">Rimeligst</h3>
             <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-              Leilighetene på Hauganfjæra fra kr 990 per natt fra natt to, og Airbnb for de som vil dele et helt hus.
+              Leilighetene på Hauganfjæra fra kr 990 per natt fra natt to, og et helt hus delt på flere via Airbnb.
             </p>
           </div>
         </div>

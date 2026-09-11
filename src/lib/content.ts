@@ -534,6 +534,8 @@ export type Lodging = {
   images: { src: string; alt: string }[];
   /** Kilde for tall og priser, med dato. */
   source: string;
+  /** Kort merkelapp når stedet har en relasjon til gården. */
+  family?: string;
 };
 
 /**
@@ -542,6 +544,26 @@ export type Lodging = {
  * stedenes egne, brukt for å vise dem fram og lenke dit.
  */
 export const lodging: Lodging[] = [
+  {
+    slug: "frosta-fjordbuer",
+    name: "Frosta Fjordbuer",
+    type: "Sjøbuer",
+    detail: "Drives av slekta vår. Seks sjøbuer ved fjorden, kr 1 250 til 1 900 per natt, 40 senger totalt.",
+    body: "Seks fjordbuer med høy standard nordvest på Frosta, drevet av Per Arne Myraunet på Hellberg Gård. Per Arne er i slekt med oss, og Hellberg er den eneste andre grenen av Myraunet-slekta som fortsatt driver på Frosta. Sammen med Mastua på gården er det 40 senger fordelt på 19 soverom, så et helt bryllupsfølge kan bo samlet. Båtutleie, badstue og gårdsbutikk med egen eplejuice på samme sted.",
+    priceFrom: "kr 1 250",
+    priceNote: "per bu per natt, kr 1 250 til 1 900 etter størrelse. Ukespris kr 7 800 til 10 850.",
+    beds: "6 sjøbuer + Mastua, 40 senger",
+    where: "Hellberg Gård, nordsiden av Frosta",
+    url: "https://frosta-fjordbuer.no/",
+    bookUrl: "https://frosta-fjordbuer.no/frosta-fjordbuer/booking",
+    logo: { src: "/overnatting/hellberg-logo.png", alt: "Hellberg Gård", shape: "wide" },
+    images: [
+      { src: "/overnatting/frosta-fjordbuer-1.jpg", alt: "De røde sjøbuene til Frosta Fjordbuer" },
+      { src: "/overnatting/frosta-fjordbuer-2.jpg", alt: "Terrasse med grill og fjordutsikt ved en av sjøbuene" },
+    ],
+    source: "frosta-fjordbuer.no/frosta-fjordbuer/booking, 2026-09-11",
+    family: "I slekt med gården",
+  },
   {
     slug: "frosta-brygge",
     name: "Frosta Brygge",
@@ -581,25 +603,6 @@ export const lodging: Lodging[] = [
     source: "hauganfjara.no/informasjon/priser, 2026-09-11",
   },
   {
-    slug: "frosta-fjordbuer",
-    name: "Frosta Fjordbuer",
-    type: "Sjøbuer",
-    detail: "Seks sjøbuer ved fjorden, kr 1 250 til 1 900 per natt. 40 senger totalt.",
-    body: "Seks fjordbuer med høy standard nordvest på Frosta, drevet av Hellberg Gård. Sammen med Mastua på gården er det 40 senger fordelt på 19 soverom, så et helt bryllupsfølge kan bo samlet. Båtutleie, badstue og gårdsbutikk med egen eplejuice på samme sted.",
-    priceFrom: "kr 1 250",
-    priceNote: "per bu per natt, kr 1 250 til 1 900 etter størrelse. Ukespris kr 7 800 til 10 850.",
-    beds: "6 sjøbuer + Mastua, 40 senger",
-    where: "Hellberg Gård, nordsiden av Frosta",
-    url: "https://frosta-fjordbuer.no/",
-    bookUrl: "https://frosta-fjordbuer.no/frosta-fjordbuer/booking",
-    logo: { src: "/overnatting/hellberg-logo.png", alt: "Hellberg Gård", shape: "wide" },
-    images: [
-      { src: "/overnatting/frosta-fjordbuer-1.jpg", alt: "De røde sjøbuene til Frosta Fjordbuer" },
-      { src: "/overnatting/frosta-fjordbuer-2.jpg", alt: "Terrasse med grill og fjordutsikt ved en av sjøbuene" },
-    ],
-    source: "frosta-fjordbuer.no/frosta-fjordbuer/booking, 2026-09-11",
-  },
-  {
     slug: "vaagen-fjordbuer",
     name: "Vågen Fjordbuer",
     type: "Hytter",
@@ -632,18 +635,21 @@ export const lodging: Lodging[] = [
     ],
     source: "klostergardentautra.no/nb/sov-hos-oss, 2026-09-11",
   },
+];
+
+/** Plattformer som samler resten av Frosta. Ligger nederst, under de navngitte stedene. */
+export const lodgingPlatforms = [
   {
-    slug: "airbnb",
-    name: "Airbnb på Frosta",
-    type: "Private hjem og hytter",
-    detail: "Størst utvalg av hele hus for familier og vennegjenger.",
-    body: "Flest hele hus og hytter, ofte med plass til en hel familie eller vennegjeng under samme tak. Søk på Frosta og filtrer på antall gjester. Mange ligger noen minutters kjøring fra gården.",
-    priceFrom: "Varierer",
-    beds: "Hele hus og hytter",
-    where: "Hele Frosta",
+    name: "Airbnb",
+    note: "Flest hele hus og hytter på Frosta. Filtrer på antall gjester.",
     url: "https://www.airbnb.com/frosta-municipality-norway/stays",
-    images: [],
-    source: "airbnb.com, 2026-09-11",
+    logo: { src: "/overnatting/airbnb-logo.svg", alt: "Airbnb" },
+  },
+  {
+    name: "Booking.com",
+    note: "Hotell, leiligheter og hytter på Frosta og i Levanger og Stjørdal.",
+    url: "https://www.booking.com/searchresults.html?ss=Frosta%2C+Norway",
+    logo: { src: "/overnatting/booking-logo.svg", alt: "Booking.com" },
   },
 ];
 
@@ -666,7 +672,7 @@ export const weddingFaqs = [
   },
   {
     q: "Hvor kan gjestene overnatte?",
-    a: "Gården har ikke egne senger, men Frosta har hotell, leiligheter, sjøbuer og mange Airbnb-hjem innen kort kjøretur. Se lista lenger ned på siden, eller hele oversikten med bilder og priser på overnattingssiden.",
+    a: "Gården har ikke egne senger, men slekta vår driver Frosta Fjordbuer med 40 senger på ett sted, og Frosta har ellers hotell, leiligheter og mange Airbnb-hjem innen kort kjøretur. Se lista lenger ned på siden, eller hele oversikten med bilder og priser på overnattingssiden.",
   },
   {
     q: "Er det parkering?",

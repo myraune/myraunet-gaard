@@ -51,8 +51,11 @@ export default function LodgingCard({ place }: { place: Lodging }) {
       </div>
 
       <div>
-        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-primary">
-          {place.type}
+        <p className="flex flex-wrap items-center gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-primary">
+          <span>{place.type}</span>
+          {place.family && (
+            <span className="bg-primary px-2 py-0.5 text-primary-foreground">{place.family}</span>
+          )}
         </p>
         <div className="mt-3">
           <Logo place={place} />
