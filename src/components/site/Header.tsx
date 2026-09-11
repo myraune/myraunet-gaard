@@ -31,6 +31,7 @@ const links: NavLink[] = [
 
 /** Sekundært, kun i mobilmenyen. På desktop lever disse i footeren. */
 const secondary = [
+  { label: "Overnatting", href: "/overnatting" },
   { label: "Galleri", href: "/galleri" },
   { label: "Historie", href: "/historie" },
   { label: "Familiebedriften", href: "/familiebedriften" },

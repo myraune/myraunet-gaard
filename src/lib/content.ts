@@ -391,7 +391,7 @@ export const faqs = [
   },
   {
     q: "Tilbyr dere overnatting?",
-    a: "Gården har ikke egne senger, men Frosta har hotell, leiligheter, sjøbuer og mange Airbnb-hjem innen kort kjøretur. Se forslagene på bryllupssiden.",
+    a: "Gården har ikke egne senger, men Frosta har hotell, leiligheter, sjøbuer og mange Airbnb-hjem innen kort kjøretur. Se oversikten på overnattingssiden.",
   },
   {
     q: "Hvilke arrangement passer lokalene til?",
@@ -517,49 +517,133 @@ export const practical = {
 };
 
 export type Lodging = {
+  slug: string;
   name: string;
   type: string;
+  /** Kort setning til lister og slide-down. */
   detail: string;
+  /** Lengre beskrivelse til /overnatting. */
+  body: string;
+  priceFrom: string;
+  priceNote?: string;
+  beds: string;
+  where: string;
   url: string;
+  bookUrl?: string;
+  logo?: { src: string; alt: string; shape?: "wide" | "square" };
+  images: { src: string; alt: string }[];
+  /** Kilde for tall og priser, med dato. */
+  source: string;
 };
 
-/** Overnatting på Frosta. Gården har ikke egne senger. Kilde: visitfrosta.no + stedenes egne sider. */
+/**
+ * Overnatting på Frosta. Gården har ikke egne senger.
+ * Priser hentet fra stedenes egne sider 2026-09-11. Logoer og bilder er
+ * stedenes egne, brukt for å vise dem fram og lenke dit.
+ */
 export const lodging: Lodging[] = [
   {
+    slug: "frosta-brygge",
     name: "Frosta Brygge",
     type: "Hotell",
-    detail: "Hotell ved sjøen med egen sjømatrestaurant. Rom fra kr 1 800 per natt.",
+    detail: "Hotell ved sjøen med egen restaurant. Rom fra kr 1 800 per natt.",
+    body: "Hotellrom rett ved fjorden, med sjømatrestaurant i samme bygg. Enkleste valget for gjester som vil ha hotellstandard, frokost og noen å lage maten dagen derpå.",
+    priceFrom: "kr 1 800",
+    priceNote: "per rom per natt",
+    beds: "Hotellrom",
+    where: "Småttavegen 80, Frosta",
     url: "https://frostabrygge.no/hotell/",
+    logo: { src: "/overnatting/frosta-brygge-logo.svg", alt: "Frosta Brygge", shape: "wide" },
+    images: [
+      { src: "/overnatting/frosta-brygge-1.jpg", alt: "Solnedgang over fjorden fra Frosta Brygge" },
+      { src: "/overnatting/frosta-brygge-2.jpg", alt: "Hotellrom på Frosta Brygge med utsikt mot sjøen" },
+    ],
+    source: "frostabrygge.no/hotell, 2026-09-11",
   },
   {
+    slug: "hauganfjara",
     name: "Hauganfjæra Camping",
     type: "Leiligheter",
-    detail: "Fem leiligheter pusset opp i 2024, to med seks sengeplasser og tre med tre til fire. Utsikt mot Trondheim.",
+    detail: "Fem leiligheter pusset opp i 2024, fra kr 990 per natt. Utsikt mot Trondheim.",
+    body: "Fem leiligheter i resepsjonsbygget, alle pusset opp i 2024, med balkong og utsikt over fjorden mot Trondheim. To store med seks sengeplasser og tre små med tre til fire. Klassifisert med fire og fem stjerner av NHO Reiseliv. Sluttvask er inkludert i første natt.",
+    priceFrom: "kr 990",
+    priceNote: "per natt fra natt to, første natt kr 1 340 inkl. sluttvask (liten leilighet). Stor leilighet kr 1 850 første natt, kr 1 400 etterpå. Sengetøy kr 120 per person.",
+    beds: "5 leiligheter, 3 til 6 personer",
+    where: "Neset, Frosta",
     url: "https://hauganfjara.no/leiligheter",
+    bookUrl: "https://hauganfjara.no/leiligheter",
+    logo: { src: "/overnatting/hauganfjara-logo.png", alt: "Hauganfjæra Camping", shape: "square" },
+    images: [
+      { src: "/overnatting/hauganfjara-1.jpg", alt: "Stue med utsikt mot fjorden i en leilighet på Hauganfjæra" },
+      { src: "/overnatting/hauganfjara-2.jpg", alt: "Sofakrok i leilighet på Hauganfjæra Camping" },
+      { src: "/overnatting/hauganfjara-3.jpg", alt: "Hauganfjæra Camping med fjorden bak" },
+    ],
+    source: "hauganfjara.no/informasjon/priser, 2026-09-11",
   },
   {
+    slug: "frosta-fjordbuer",
     name: "Frosta Fjordbuer",
-    type: "Hytter",
-    detail: "Sjøbuer ved fjorden med kjøkken og bad.",
-    url: "https://frosta-fjordbuer.no/Norsk/index_n.html",
+    type: "Sjøbuer",
+    detail: "Seks sjøbuer ved fjorden, kr 1 250 til 1 900 per natt. 40 senger totalt.",
+    body: "Seks fjordbuer med høy standard nordvest på Frosta, drevet av Hellberg Gård. Sammen med Mastua på gården er det 40 senger fordelt på 19 soverom, så et helt bryllupsfølge kan bo samlet. Båtutleie, badstue og gårdsbutikk med egen eplejuice på samme sted.",
+    priceFrom: "kr 1 250",
+    priceNote: "per bu per natt, kr 1 250 til 1 900 etter størrelse. Ukespris kr 7 800 til 10 850.",
+    beds: "6 sjøbuer + Mastua, 40 senger",
+    where: "Hellberg Gård, nordsiden av Frosta",
+    url: "https://frosta-fjordbuer.no/",
+    bookUrl: "https://frosta-fjordbuer.no/frosta-fjordbuer/booking",
+    logo: { src: "/overnatting/hellberg-logo.png", alt: "Hellberg Gård", shape: "wide" },
+    images: [
+      { src: "/overnatting/frosta-fjordbuer-1.jpg", alt: "De røde sjøbuene til Frosta Fjordbuer" },
+      { src: "/overnatting/frosta-fjordbuer-2.jpg", alt: "Terrasse med grill og fjordutsikt ved en av sjøbuene" },
+    ],
+    source: "frosta-fjordbuer.no/frosta-fjordbuer/booking, 2026-09-11",
   },
   {
+    slug: "vaagen-fjordbuer",
     name: "Vågen Fjordbuer",
     type: "Hytter",
-    detail: "Tre hytter ved sjøen med kjøkken og bad, sentralt på Frosta.",
-    url: "https://www.facebook.com/VaagenFjordbuer/",
+    detail: "Tre hytter ved sjøen og Snekkerbua med to soverom. Bookes via hotell.no.",
+    body: "Tre sjøbuer med kjøkken og bad, sentralt på Frosta, med stor uteplass der ungene kan løpe fritt. I tillegg Snekkerbua, en leilighet med to soverom, terrasse og sjøutsikt. Gratis parkering og elbillader.",
+    priceFrom: "Se hotell.no",
+    beds: "3 hytter + Snekkerbua",
+    where: "Vangbergsvegen, Frosta",
+    url: "https://hotell.no/norge/frosta/hotell/vagen-fjordbuer-snekkerbua",
+    bookUrl: "https://hotell.no/norge/frosta/hotell/vagen-fjordbuer-snekkerbua",
+    images: [
+      { src: "/overnatting/vaagen-1.jpg", alt: "De røde sjøbuene til Vågen Fjordbuer" },
+      { src: "/overnatting/vaagen-2.jpg", alt: "Utsikt over Trondheimsfjorden fra Vågen" },
+    ],
+    source: "hotell.no og visitfrosta.no, 2026-09-11",
   },
   {
+    slug: "klostergarden",
     name: "Klostergården Tautra",
     type: "Gjestegård",
-    detail: "Ute på Tautra, over moloen fra Frosta. Senger med utsikt over fjorden, ved klosterruinene.",
-    url: "https://klostergardentautra.no/nb/",
+    detail: "Rundt 30 senger i tre hus ute på Tautra. Frokost inkludert.",
+    body: "Lyse rom fordelt på tre hus, kafeen fra tidlig 1800-tall, kårhuset fra 1956 og Ståle-huset fra 2005, med felles bad og en felles stue med langbord. Rundt 30 sengeplasser, frokost, sengetøy og håndklær inkludert. Eget bryggeri og spisested på tunet, og klosterruinene rett ved. Online booking er stengt i lavsesong, ring dem.",
+    priceFrom: "På forespørsel",
+    beds: "Ca. 30 senger i tre hus",
+    where: "Tautra, over moloen fra Frosta",
+    url: "https://klostergardentautra.no/nb/sov-hos-oss/",
+    logo: { src: "/overnatting/klostergarden-logo.png", alt: "Klostergården Tautra", shape: "square" },
+    images: [
+      { src: "/overnatting/klostergarden-1.jpg", alt: "Oppredd seng på Klostergården Tautra" },
+    ],
+    source: "klostergardentautra.no/nb/sov-hos-oss, 2026-09-11",
   },
   {
+    slug: "airbnb",
     name: "Airbnb på Frosta",
     type: "Private hjem og hytter",
-    detail: "Størst utvalg for gjester som vil bo tett på gården. Mange hele hus for familier og vennegjenger.",
+    detail: "Størst utvalg av hele hus for familier og vennegjenger.",
+    body: "Flest hele hus og hytter, ofte med plass til en hel familie eller vennegjeng under samme tak. Søk på Frosta og filtrer på antall gjester. Mange ligger noen minutters kjøring fra gården.",
+    priceFrom: "Varierer",
+    beds: "Hele hus og hytter",
+    where: "Hele Frosta",
     url: "https://www.airbnb.com/frosta-municipality-norway/stays",
+    images: [],
+    source: "airbnb.com, 2026-09-11",
   },
 ];
 
@@ -582,7 +666,7 @@ export const weddingFaqs = [
   },
   {
     q: "Hvor kan gjestene overnatte?",
-    a: "Gården har ikke egne senger, men Frosta har hotell, leiligheter, sjøbuer og mange Airbnb-hjem innen kort kjøretur. Se lista lenger ned på siden.",
+    a: "Gården har ikke egne senger, men Frosta har hotell, leiligheter, sjøbuer og mange Airbnb-hjem innen kort kjøretur. Se lista lenger ned på siden, eller hele oversikten med bilder og priser på overnattingssiden.",
   },
   {
     q: "Er det parkering?",

@@ -17,6 +17,7 @@ const columns = [
     title: "Gården",
     links: [
       { label: "Priser", href: "/priser" },
+      { label: "Overnatting", href: "/overnatting" },
       { label: "Galleri", href: "/galleri" },
       { label: "Historie", href: "/historie" },
       { label: "Familiebedriften", href: "/familiebedriften" },

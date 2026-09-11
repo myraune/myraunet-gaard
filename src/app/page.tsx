@@ -13,6 +13,7 @@ import PriceTable from "@/components/site/PriceTable";
 import FaqList from "@/components/site/FaqList";
 import MapBlock from "@/components/site/MapBlock";
 import DateCheck from "@/components/site/DateCheck";
+import LodgingBar from "@/components/site/LodgingBar";
 import { faqs, galleryImages, otherOccasions, site, venues } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -86,6 +87,8 @@ export default function Home() {
           <DateCheck anledning="Arrangement" />
         </div>
       </section>
+
+      <LodgingBar />
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
