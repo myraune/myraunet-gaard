@@ -5,8 +5,11 @@ import { site } from "@/lib/content";
 
 type Status = "idle" | "sending" | "sent" | "mailto" | "error";
 
+/** Svakt tonet felt som står seg både på hvit flate og på tonede bannere. */
 const felt =
-  "w-full border border-border bg-background px-4 py-3.5 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-primary";
+  "mt-2 w-full rounded-2xl bg-foreground/[0.06] px-4 py-3.5 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:bg-white focus:ring-2 focus:ring-primary/40";
+
+const label = "block text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground";
 
 /**
  * Tre felt, ett spørsmål: er datoen ledig?
@@ -15,11 +18,9 @@ const felt =
 export default function DateCheck({
   anledning = "Arrangement",
   lokale = "Vet ikke ennå",
-  tone = "ink",
 }: {
   anledning?: string;
   lokale?: string;
-  tone?: "ink" | "light";
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [form, setForm] = useState({ dato: "", navn: "", epost: "", nettside: "" });
@@ -64,27 +65,20 @@ export default function DateCheck({
     }
   };
 
-  const light = tone === "light";
-  const label = `block text-[11px] font-medium uppercase tracking-[0.16em] ${
-    light ? "text-cream/60" : "text-muted-foreground"
-  }`;
-
   if (status === "sent") {
     return (
-      <p
-        className={`border px-5 py-4 text-base ${
-          light
-            ? "border-cream/30 text-cream"
-            : "border-primary/40 bg-secondary/50 text-foreground"
-        }`}
-      >
+      <p className="rounded-2xl bg-white px-5 py-4 text-base text-foreground">
         Takk. Vi sjekker datoen og svarer deg på e-post.
       </p>
     );
   }
 
   return (
-    <form onSubmit={submit} className="grid gap-4 sm:grid-cols-[1.1fr_1fr_1.2fr_auto] sm:items-end" noValidate>
+    <form
+      onSubmit={submit}
+      className="grid gap-4 sm:grid-cols-2 lg:grid-cols-[1.1fr_1fr_1.2fr_auto] lg:items-end"
+      noValidate
+    >
       <div>
         <label className={label} htmlFor={`dc-dato-${anledning}`}>
           Dato
@@ -93,7 +87,7 @@ export default function DateCheck({
           id={`dc-dato-${anledning}`}
           value={form.dato}
           onChange={(e) => set("dato")(e.target.value)}
-          className={`${felt} mt-2`}
+          className={felt}
           placeholder="Lørdag 12. juni 2027"
         />
       </div>
@@ -105,12 +99,12 @@ export default function DateCheck({
           id={`dc-navn-${anledning}`}
           value={form.navn}
           onChange={(e) => set("navn")(e.target.value)}
-          className={`${felt} mt-2`}
+          className={felt}
           placeholder="Fornavn holder"
           autoComplete="given-name"
         />
       </div>
-      <div>
+      <div className="sm:col-span-2 lg:col-span-1">
         <label className={label} htmlFor={`dc-epost-${anledning}`}>
           E-post
         </label>
@@ -119,7 +113,7 @@ export default function DateCheck({
           type="email"
           value={form.epost}
           onChange={(e) => set("epost")(e.target.value)}
-          className={`${felt} mt-2`}
+          className={felt}
           placeholder="navn@epost.no"
           autoComplete="email"
         />
@@ -135,26 +129,22 @@ export default function DateCheck({
       <button
         type="submit"
         disabled={status === "sending"}
-        className={`inline-flex min-h-[52px] items-center justify-center whitespace-nowrap rounded-sm px-7 text-[13px] font-medium uppercase tracking-[0.14em] transition-colors disabled:opacity-60 ${
-          light
-            ? "bg-cream text-forest-dark hover:bg-white"
-            : "bg-primary text-primary-foreground hover:bg-forest-dark"
-        }`}
+        className="inline-flex min-h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-primary px-7 text-[13px] font-medium uppercase tracking-[0.14em] text-primary-foreground transition-colors hover:bg-forest-dark disabled:opacity-60 sm:col-span-2 lg:col-span-1"
       >
         {status === "sending" ? "Sender..." : "Sjekk datoen"}
       </button>
 
       {status === "error" && (
-        <p className="text-sm text-destructive sm:col-span-4">
+        <p className="text-sm text-destructive sm:col-span-2 lg:col-span-4">
           Skriv inn navn og e-post, så vet vi hvem vi skal svare.
         </p>
       )}
       {status === "mailto" && (
-        <p className={`text-sm sm:col-span-4 ${light ? "text-cream/70" : "text-muted-foreground"}`}>
+        <p className="text-sm text-muted-foreground sm:col-span-2 lg:col-span-4">
           Vi åpnet e-postprogrammet ditt med spørsmålet ferdig skrevet. Send det derfra.
         </p>
       )}
-      <p className={`text-xs sm:col-span-4 ${light ? "text-cream/50" : "text-muted-foreground"}`}>
+      <p className="text-xs text-muted-foreground sm:col-span-2 lg:col-span-4">
         Uforpliktende. Vi svarer på e-post, og ringer bare om dere vil.
       </p>
     </form>

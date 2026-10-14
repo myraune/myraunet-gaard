@@ -8,48 +8,55 @@ import {
 } from "@/components/site/Bits";
 import PriceTable from "@/components/site/PriceTable";
 import FaqList from "@/components/site/FaqList";
-import { priceList, site, venues } from "@/lib/content";
+import { priserPage, site, venues } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Priser for leie av lokaler",
-  description:
-    "Gildesalen kr 4 000,-, Grisehuset kr 2 500,- ferdig vasket, begge lokaler kr 5 000,-. Rengjøring og kjøkkenhjelp i tillegg. Alle priser inkl. mva.",
+  title: priserPage.metaTitle,
+  description: priserPage.metaDescription,
   alternates: { canonical: "/priser" },
 };
 
-const included = [
-  "Hele lokalet med bord og stoler",
-  "Kjøkkenet til leietakers disposisjon",
-  "Parkering på tunet",
-  "Gårdstunet utenfor til mingling og bilder",
-];
-
-const notIncluded = [
-  "Mat og drikke, som dere ordner selv",
-  "Rengjøring, om dere ikke bestiller det",
-  "Kjøkkenhjelp, kr 300,- pr. time",
-  "Overnatting, som ikke tilbys for øyeblikket",
-];
+function ScopeList({
+  label,
+  items,
+  strong = false,
+}: {
+  label: string;
+  items: string[];
+  strong?: boolean;
+}) {
+  return (
+    <div>
+      <p
+        className={`text-[11px] font-medium uppercase tracking-[0.18em] ${
+          strong ? "text-primary" : "text-muted-foreground"
+        }`}
+      >
+        {label}
+      </p>
+      <ul className="mt-5 divide-y divide-foreground/10 border-t border-foreground/10">
+        {items.map((item) => (
+          <li
+            key={item}
+            className={`py-4 text-base ${strong ? "text-foreground/85" : "text-muted-foreground"}`}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default function PriserPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Priser"
-        title="Prisene står her, ikke bak et skjema"
-        lead={`Leieprisene har stått uendret siden ${priceList.updated}. Alle priser er inkl. mva.`}
-        image="/myraunet-gallery/natur/5.jpg"
-        alt="Gårdsvegen og jordene på Frosta"
-      />
+      <PageHero {...priserPage.hero} priority />
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
           <div>
-            <SectionHead
-              eyebrow="Prisliste"
-              title="Leie av lokaler"
-              lead="Dere betaler for lokalet, ikke per gjest. Det gjør det enkelt å regne på selv om følget vokser."
-            />
+            <SectionHead {...priserPage.list} />
             <div className="mt-8">
               <ButtonLink href="/kontakt">Send forespørsel</ButtonLink>
             </div>
@@ -59,46 +66,18 @@ export default function PriserPage() {
       </Section>
 
       <Section tone="muted">
-        <SectionHead
-          eyebrow="Hva som følger med"
-          title="Inkludert og ikke inkludert"
-        />
+        <SectionHead eyebrow={priserPage.scope.eyebrow} title={priserPage.scope.title} />
         <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-16">
-          <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-primary">
-              Inkludert i leien
-            </p>
-            <ul className="mt-5 divide-y divide-border border-t border-border">
-              {included.map((item) => (
-                <li key={item} className="py-4 text-base text-foreground/85">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              Kommer i tillegg
-            </p>
-            <ul className="mt-5 divide-y divide-border border-t border-border">
-              {notIncluded.map((item) => (
-                <li key={item} className="py-4 text-base text-muted-foreground">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ScopeList label={priserPage.scope.includedLabel} items={priserPage.included} strong />
+          <ScopeList label={priserPage.scope.extraLabel} items={priserPage.notIncluded} />
         </div>
       </Section>
 
       <Section>
-        <SectionHead
-          eyebrow="Kapasitet"
-          title="Hvilket lokale passer til hvor mange"
-        />
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <SectionHead {...priserPage.capacity} />
+        <div className="mt-10 grid gap-4 md:grid-cols-3 md:gap-6">
           {venues.map((venue) => (
-            <div key={venue.slug} className="border border-border p-8">
+            <div key={venue.slug} className="rounded-3xl bg-tint-sage p-8">
               <h3 className="font-serif text-2xl font-light text-foreground">
                 {venue.name}
               </h3>
@@ -106,9 +85,7 @@ export default function PriserPage() {
                 {venue.price}
               </p>
               {venue.priceNote && (
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {venue.priceNote}
-                </p>
+                <p className="mt-2 text-sm text-muted-foreground">{venue.priceNote}</p>
               )}
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
                 {venue.lead}
@@ -120,7 +97,7 @@ export default function PriserPage() {
 
       <Section tone="muted">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:gap-20">
-          <SectionHead eyebrow="Vilkår" title="Det praktiske rundt leien" />
+          <SectionHead eyebrow={priserPage.terms.eyebrow} title={priserPage.terms.title} />
           <div>
             <FaqList />
             <p className="mt-8 text-sm text-muted-foreground">
@@ -141,10 +118,7 @@ export default function PriserPage() {
         </div>
       </Section>
 
-      <CtaBand
-        title="Klar for å sjekke datoen?"
-        lead="Send dato og omtrentlig antall gjester, så svarer vi om lokalet er ledig."
-      />
+      <CtaBand title={priserPage.cta.title} lead={priserPage.cta.lead} />
     </>
   );
 }

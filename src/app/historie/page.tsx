@@ -81,7 +81,7 @@ export default function HistoriePage() {
               </p>
             </div>
             <div className="mt-8">
-              <ButtonLink href="/familiebedriften" variant="outline">
+              <ButtonLink href="/familiebedriften" variant="soft">
                 Familiebedriften i dag
               </ButtonLink>
             </div>

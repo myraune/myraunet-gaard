@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Venue } from "@/lib/content";
-import { FactList } from "./Bits";
+import { FactList, Photo } from "./Bits";
 
+/** Stor rad til /lokaler: bilde og fakta side om side, annenhver vei. */
 export default function VenueRow({
   venue,
   index,
@@ -10,17 +11,17 @@ export default function VenueRow({
   index: number;
 }) {
   const flipped = index % 2 === 1;
+  const href = `/lokaler/${venue.slug}`;
 
   return (
     <article className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
       <div className={flipped ? "md:order-2" : ""}>
-        <Link href={`/lokaler/${venue.slug}`} className="group block">
-          <div className="relative aspect-[4/3] overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+        <Link href={href} className="group block">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
+            <Photo
               src={venue.images[0].src}
               alt={venue.images[0].alt}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              className="transition-transform duration-700 group-hover:scale-[1.03]"
             />
           </div>
         </Link>
@@ -31,7 +32,7 @@ export default function VenueRow({
           Lokale {String(index + 1).padStart(2, "0")}
         </p>
         <h3 className="mt-3 font-serif text-3xl font-light text-foreground md:text-4xl">
-          <Link href={`/lokaler/${venue.slug}`} className="hover:text-primary">
+          <Link href={href} className="hover:text-primary">
             {venue.name}
           </Link>
         </h3>
@@ -39,13 +40,13 @@ export default function VenueRow({
           {venue.lead}
         </p>
 
-        <div className="mt-7 border-t border-border">
+        <div className="mt-6">
           <FactList items={venue.facts} />
         </div>
 
         <Link
-          href={`/lokaler/${venue.slug}`}
-          className="mt-7 inline-flex min-h-[44px] items-center text-[13px] font-medium uppercase tracking-[0.14em] text-primary underline-offset-4 hover:underline"
+          href={href}
+          className="mt-6 inline-flex min-h-[44px] items-center text-[13px] font-medium uppercase tracking-[0.14em] text-primary underline-offset-4 hover:underline"
         >
           Les mer om {venue.name}
         </Link>

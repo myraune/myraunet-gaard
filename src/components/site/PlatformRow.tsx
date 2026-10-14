@@ -10,7 +10,7 @@ export default function PlatformRow({ compact = false }: { compact?: boolean }) 
           href={platform.url}
           target="_blank"
           rel="noreferrer"
-          className={`group flex items-center gap-6 border border-border bg-background transition-colors hover:border-primary ${
+          className={`group flex items-center gap-6 rounded-2xl bg-white shadow-[0_2px_20px_-8px_rgba(0,0,0,0.18)] transition-shadow hover:shadow-[0_6px_28px_-8px_rgba(0,0,0,0.28)] ${
             compact ? "px-5 py-4" : "px-7 py-7"
           }`}
         >

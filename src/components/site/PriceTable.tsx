@@ -8,7 +8,7 @@ export default function PriceTable({ withNotes = true }: { withNotes?: boolean }
           Priser for leie av lokaler på Myraunet Gård
         </caption>
         <thead>
-          <tr className="border-b border-foreground/20">
+          <tr className="border-b border-foreground/15">
             <th className="py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
               Lokale og tillegg
             </th>
@@ -19,7 +19,7 @@ export default function PriceTable({ withNotes = true }: { withNotes?: boolean }
         </thead>
         <tbody>
           {priceList.rows.map((row) => (
-            <tr key={row.label} className="border-b border-border">
+            <tr key={row.label} className="border-b border-foreground/10">
               <td className="py-4 pr-4 text-sm text-foreground md:text-base">
                 {row.label}
               </td>

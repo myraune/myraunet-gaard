@@ -10,16 +10,16 @@ export default function StickyCta() {
   if (pathname === "/kontakt") return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-[1fr_auto] gap-2 border-t border-border bg-background/95 p-3 backdrop-blur-md lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-[1fr_auto] gap-2 bg-background p-3 shadow-[0_-8px_30px_-12px_rgba(0,0,0,0.2)] lg:hidden">
       <Link
         href="/kontakt"
-        className="inline-flex min-h-[48px] items-center justify-center rounded-sm bg-primary text-[13px] font-medium uppercase tracking-[0.14em] text-primary-foreground"
+        className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-primary px-4 text-[13px] font-medium uppercase tracking-[0.14em] text-primary-foreground"
       >
         Sjekk om datoen er ledig
       </Link>
       <a
         href={site.phoneHref}
-        className="inline-flex min-h-[48px] items-center justify-center rounded-sm border border-border px-4 text-[13px] font-medium uppercase tracking-[0.14em] text-foreground"
+        className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-foreground/[0.06] px-6 text-[13px] font-medium uppercase tracking-[0.14em] text-foreground"
       >
         Ring
       </a>

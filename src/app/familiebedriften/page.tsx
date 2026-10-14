@@ -127,7 +127,7 @@ export default function FamiliebedriftenPage() {
               </p>
             </div>
             <div className="mt-9 flex flex-wrap gap-3">
-              <ButtonLink href="/historie" variant="outline">
+              <ButtonLink href="/historie" variant="soft">
                 Gårdens historie fra 1557
               </ButtonLink>
             </div>
@@ -195,7 +195,7 @@ export default function FamiliebedriftenPage() {
               </p>
             </div>
             <div className="mt-9">
-              <ButtonLink href="https://raago.no" variant="outline" external>
+              <ButtonLink href="https://raago.no" variant="soft" external>
                 raago.no
               </ButtonLink>
             </div>

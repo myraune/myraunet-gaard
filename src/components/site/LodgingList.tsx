@@ -6,13 +6,15 @@ import PlatformRow from "./PlatformRow";
 export default function LodgingList() {
   return (
     <div>
-      <ul className="grid gap-px border-t border-border sm:grid-cols-2">
+      <ul className="grid gap-x-10 sm:grid-cols-2">
         {lodging.map((place) => (
-          <li key={place.slug} className="border-b border-border py-6 sm:pr-10">
+          <li key={place.slug} className="border-b border-foreground/10 py-6">
             <p className="flex flex-wrap items-center gap-3 text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
               <span>{place.type}</span>
               {place.family && (
-                <span className="bg-primary px-2 py-0.5 text-primary-foreground">{place.family}</span>
+                <span className="rounded-full bg-primary px-3 py-0.5 text-primary-foreground">
+                  {place.family}
+                </span>
               )}
             </p>
             <h3 className="mt-2 flex items-center gap-3 font-serif text-xl font-normal text-foreground">

@@ -725,3 +725,197 @@ export const weddingPriceExample = {
   total: { label: "Hele helga", value: "kr 7 000,-" },
   note: "Inkl. mva. Grisehuset til dagen derpå og kjøkkenhjelp avtales i tillegg.",
 };
+
+/* ------------------------------------------------------------------ */
+/* Sidetekster. Tall hentes fra eksportene over, så de aldri driver.   */
+/* ------------------------------------------------------------------ */
+
+const weekendTotal = weddingPriceExample.total.value;
+const weekendTotalShort = weekendTotal.replace(",-", "");
+const oldestYear = history[0].year;
+const cheapestLodging = lodging.find((l) => l.slug === "hauganfjara")!.priceFrom;
+const kitchenHelp = priceList.rows.find((r) => r.label === "Kjøkkenhjelp")!.value;
+const weddingEvent = eventTypes.find((e) => e.slug === "bryllup")!;
+
+export const capacity = { gildesalen: "120", grisehuset: "35" };
+
+export const cta = {
+  title: "Se om datoen er ledig",
+  lead: "Send en uforpliktende forespørsel med dato og antall gjester, så tar vi kontakt.",
+  button: "Send forespørsel",
+};
+
+export const travel = [
+  { label: "Fra Trondheim", value: "ca. 1 time" },
+  { label: "Fra Stjørdal", value: "ca. 30 minutter" },
+  { label: "Fra Levanger", value: "ca. 30 minutter" },
+];
+
+export const mapCopy = {
+  title: "Slik finner dere fram",
+  text: "Gården ligger i Kvamdalsvegen på Frosta, med utsikt over jordbrukslandskapet. Det er god plass til parkering på tunet.",
+};
+
+export const lodgingTeaser = {
+  eyebrow: "Gjester langveisfra?",
+  text: `Overnatting på Frosta fra ${cheapestLodging} per natt. Hotell, sjøbuer, Airbnb og Booking.com.`,
+  parking: `${practical.parking}, så gjestene kan kjøre.`,
+};
+
+export const home = {
+  hero: {
+    eyebrow: "Selskapslokaler på Frosta, en time fra Trondheim",
+    title: "Fest på gården, med egen mat og drikke og ingen sluttid",
+    lead: `Gildesalen tar ${capacity.gildesalen} gjester og koster ${weekendTotalShort} for hele helga. Bryllup, konfirmasjon, julebord og kurs i bygninger som har stått her siden ${oldestYear}.`,
+    image: weddingEvent.image.src,
+    alt: "Bryllupsfølge på tunet foran den røde låven på Myraunet Gård",
+  },
+  dateCheck: { eyebrow: "Første spørsmål", title: "Er datoen ledig?" },
+  about: {
+    eyebrow: `Opplevelsesgård siden ${site.driversSince}`,
+    lead: "Myraunet Gård er en familiebedrift på Frosta. Vi leier ut lokaler til selskap, kurs og konferanser, driver tradisjonelt jordbruk, og pakker sesongens grønnsaker i det som en gang var kufjøset.",
+    body: `${site.drivers} har drevet gården siden ${site.driversSince}. Bygningene er de samme som før, med historiske gjenstander på veggene og jordbrukslandskapet rett utenfor. Gården er registrert i Norsk Kulturarv med Olavsrosa.`,
+  },
+  keyNumbers: [
+    { value: capacity.gildesalen, label: "Gjester i Gildesalen, gårdens gamle fjøs" },
+    { value: weekendTotalShort, label: "For Gildesalen fredag til søndag, inkl. rengjøring" },
+    { value: oldestYear, label: "Første gang gården er nevnt" },
+  ],
+  venues: {
+    eyebrow: "Tre lokaler",
+    title: `Fra ${capacity.grisehuset} gjester i Grisehuset til ${capacity.gildesalen} i Gildesalen`,
+    lead: "Lokalene kan leies hver for seg eller samlet. Kjøkkenet står til leietakers disposisjon, og dere ordner mat og drikke selv.",
+  },
+  events: {
+    eyebrow: "Anledninger",
+    title: "Det som feires her",
+    lead: "Vi har erfaring med de store dagene og de faglige helgene. Lokalene har også vært brukt til konsert og moteshow.",
+  },
+  prices: {
+    eyebrow: "Priser",
+    title: "Åpne priser, ingen pakkepris",
+    lead: "Dere betaler for lokalet. Rengjøring og kjøkkenhjelp kommer i tillegg om dere ønsker det.",
+  },
+  gallery: {
+    eyebrow: "Galleri",
+    title: "Gården gjennom året",
+    lead: "Sommer, vinter og lokalene innvendig.",
+  },
+  faq: { eyebrow: "Spørsmål", title: "Det folk lurer på" },
+};
+
+export const lokalerPage = {
+  metaTitle: "Lokaler til leie på Myraunet Gård",
+  metaDescription: `Gildesalen er 180 kvm og tar ca. ${capacity.gildesalen} gjester. Grisehuset er 80 kvm og tar ca. ${capacity.grisehuset}. Stabburet brukes til lunsj om sommeren. Selskapslokaler på Frosta i Trøndelag.`,
+  hero: {
+    eyebrow: "Lokaler",
+    title: "Tre bygninger, tre måter å samle folk på",
+    lead: "Alle lokalene ligger på samme tun. Gildesalen og Grisehuset kan leies samlet når selskapet trenger to rom.",
+    image: venues[0].images[0].src,
+    alt: "Gildesalen pyntet til selskap med langbord og hvite stoltrekk",
+  },
+  prices: {
+    eyebrow: "Priser",
+    title: "Hva leien koster",
+    lead: "Alle priser er inkl. mva. Leietaker rydder lokalet klart til rengjøring.",
+  },
+};
+
+export const weddingPage = {
+  metaTitle: `Bryllup på gård i Trøndelag, ${weekendTotalShort} for hele helga`,
+  metaDescription: `Gildesalen på Myraunet Gård tar ${capacity.gildesalen} gjester. Fredag til søndag koster ${weekendTotalShort} inkl. rengjøring. Egen mat og drikke, vielse på tunet, ingen sluttid. Frosta, en time fra Trondheim.`,
+  ogDescription: `Gildesalen tar ${capacity.gildesalen} gjester. Egen mat og drikke, vielse på tunet, ingen sluttid. Frosta, en time fra Trondheim.`,
+  hero: {
+    eyebrow: "Bryllup",
+    title: "Fest i det gamle fjøset, med egen mat og drikke og ingen sluttid",
+    lead: `Gildesalen tar ${capacity.gildesalen} gjester, tunet tar vielsen, og helga koster ${weekendTotalShort}. Resten bestemmer dere.`,
+  },
+  numbers: [
+    { value: capacity.gildesalen, label: "gjester i Gildesalen" },
+    { value: weekendTotalShort, label: "for fredag til søndag, inkl. rengjøring" },
+    { value: "Egen", label: "mat og drikke, ingen krav om leverandør" },
+    { value: "1 time", label: "fra Trondheim, en halv fra Stjørdal" },
+  ],
+  dateCheck: {
+    eyebrow: "Første spørsmål",
+    title: "Er datoen ledig?",
+    lead: "Lørdager i juni, juli og august går først. Tre felt, så svarer vi.",
+  },
+  weekend: {
+    eyebrow: "Slik ser helga ut",
+    title: "Dere har gården fra fredag til søndag",
+  },
+  photos: [
+    { src: venues[0].images[0].src, alt: "Gildesalen pyntet til bryllup med hvite stoltrekk" },
+    { src: weddingEvent.image.src, alt: "Bryllupsfølget ute på tunet foran låven" },
+    { src: venues[0].images[1].src, alt: "Dekket langbord med markblomster i Gildesalen" },
+  ],
+  rent: {
+    eyebrow: "Ærlig om leien",
+    title: "Inkludert, og det dere ordner selv",
+    lead: "Dere leier huset, ikke en pakke. Det holder prisen nede og valgene hos dere.",
+    included: `Inkludert i ${weekendTotalShort}`,
+    arrange: "Dere ordner selv",
+  },
+  price: {
+    eyebrow: "Regnestykket",
+    title: `Hele helga for ${weekendTotalShort}`,
+    lead: `Ingen pris per kuvert, ingen minstekjøp av drikke. Lokalet koster det samme om dere er 40 eller ${capacity.gildesalen}.`,
+    link: "Hele prislisten",
+  },
+  lodging: {
+    eyebrow: "Gjestene",
+    title: "Overnatting på Frosta",
+    lead: "Gården har ikke egne senger. Frosta har hotell, leiligheter og sjøbuer, og Airbnb har flest hele hus for familier og vennegjenger.",
+    note: `${practical.parking}, så gjestene kan trygt kjøre. ${practical.distance}.`,
+  },
+  faq: { eyebrow: "Spørsmål", title: "Det brudepar spør om" },
+  cta: {
+    title: "Send datoen, så svarer vi",
+    lead: `Uforpliktende. Vil dere heller ringe, er Gustav på ${site.phone}.`,
+  },
+};
+
+export const priserPage = {
+  metaTitle: "Priser for leie av lokaler",
+  metaDescription: `Gildesalen ${venues[0].price}, Grisehuset ${venues[1].price} ferdig vasket, begge lokaler ${priceList.rows[3].value}. Rengjøring og kjøkkenhjelp i tillegg. Alle priser inkl. mva.`,
+  hero: {
+    eyebrow: "Priser",
+    title: "Prisene står her, ikke bak et skjema",
+    lead: `Leieprisene har stått uendret siden ${priceList.updated}. Alle priser er inkl. mva.`,
+    image: venues[2].images[1].src,
+    alt: venues[2].images[1].alt,
+  },
+  list: {
+    eyebrow: "Prisliste",
+    title: "Leie av lokaler",
+    lead: "Dere betaler for lokalet, ikke per gjest. Det gjør det enkelt å regne på selv om følget vokser.",
+  },
+  scope: {
+    eyebrow: "Hva som følger med",
+    title: "Inkludert og ikke inkludert",
+    includedLabel: "Inkludert i leien",
+    extraLabel: "Kommer i tillegg",
+  },
+  included: [
+    "Hele lokalet med bord og stoler",
+    "Kjøkkenet til leietakers disposisjon",
+    "Parkering på tunet",
+    "Gårdstunet utenfor til mingling og bilder",
+  ],
+  notIncluded: [
+    "Mat og drikke, som dere ordner selv",
+    "Rengjøring, om dere ikke bestiller det",
+    `Kjøkkenhjelp, ${kitchenHelp}`,
+    "Overnatting, som ikke tilbys for øyeblikket",
+  ],
+  capacity: {
+    eyebrow: "Kapasitet",
+    title: "Hvilket lokale passer til hvor mange",
+  },
+  terms: { eyebrow: "Vilkår", title: "Det praktiske rundt leien" },
+  cta: {
+    title: "Klar for å sjekke datoen?",
+    lead: "Send dato og omtrentlig antall gjester, så svarer vi om lokalet er ledig.",
+  },
+};

@@ -17,12 +17,12 @@ export default function FaqList({
   const items = limit ? source.slice(0, limit) : source;
 
   return (
-    <Accordion type="single" collapsible className="border-t border-border">
+    <Accordion type="single" collapsible className="border-t border-foreground/10">
       {items.map((faq, index) => (
         <AccordionItem
           key={faq.q}
           value={`faq-${index}`}
-          className="border-b border-border"
+          className="border-b border-foreground/10"
         >
           <AccordionTrigger className="py-5 text-left font-serif text-lg font-normal hover:text-primary md:text-xl">
             {faq.q}

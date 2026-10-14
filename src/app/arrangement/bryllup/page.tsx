@@ -4,19 +4,20 @@ import {
   CtaBand,
   Eyebrow,
   PageHero,
+  Photo,
   Section,
   SectionHead,
+  wrap,
 } from "@/components/site/Bits";
 import DateCheck from "@/components/site/DateCheck";
 import FaqList from "@/components/site/FaqList";
 import LodgingList from "@/components/site/LodgingList";
 import {
   eventBySlug,
-  practical,
-  site,
   weddingDay,
   weddingFaqs,
   weddingIncluded,
+  weddingPage,
   weddingPriceExample,
   weddingYouArrange,
 } from "@/lib/content";
@@ -24,39 +25,15 @@ import {
 const event = eventBySlug("bryllup")!;
 
 export const metadata: Metadata = {
-  title: "Bryllup på gård i Trøndelag, kr 7 000 for hele helga",
-  description:
-    "Gildesalen på Myraunet Gård tar 120 gjester. Fredag til søndag koster kr 7 000 inkl. rengjøring. Egen mat og drikke, vielse på tunet, ingen sluttid. Frosta, en time fra Trondheim.",
+  title: weddingPage.metaTitle,
+  description: weddingPage.metaDescription,
   alternates: { canonical: "/arrangement/bryllup" },
   openGraph: {
-    title: "Bryllup på gård i Trøndelag, kr 7 000 for hele helga",
-    description:
-      "Gildesalen tar 120 gjester. Egen mat og drikke, vielse på tunet, ingen sluttid. Frosta, en time fra Trondheim.",
+    title: weddingPage.metaTitle,
+    description: weddingPage.ogDescription,
     images: [{ url: event.image.src, alt: event.image.alt }],
   },
 };
-
-const numbers = [
-  { value: "120", label: "gjester i Gildesalen" },
-  { value: "kr 7 000", label: "for fredag til søndag, inkl. rengjøring" },
-  { value: "Egen", label: "mat og drikke, ingen krav om leverandør" },
-  { value: "1 time", label: "fra Trondheim, en halv fra Stjørdal" },
-];
-
-const photos = [
-  {
-    src: "/lovable-uploads/d4692008-4440-4ffe-95df-334b4f30558e.png",
-    alt: "Gildesalen pyntet til bryllup med hvite stoltrekk",
-  },
-  {
-    src: "/lovable-uploads/9bc8604c-b534-4a72-b0b3-e6f5281829a4.png",
-    alt: "Bryllupsfølget ute på tunet foran låven",
-  },
-  {
-    src: "/lovable-uploads/1dbad16c-7bac-40e9-a9c9-38a5475118af.png",
-    alt: "Dekket langbord med markblomster i Gildesalen",
-  },
-];
 
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -68,21 +45,54 @@ const faqJsonLd = {
   })),
 };
 
+function RentList({
+  label,
+  items,
+  strong = false,
+}: {
+  label: string;
+  items: string[];
+  strong?: boolean;
+}) {
+  return (
+    <div>
+      <p
+        className={`text-[11px] font-medium uppercase tracking-[0.18em] ${
+          strong ? "text-primary" : "text-muted-foreground"
+        }`}
+      >
+        {label}
+      </p>
+      <ul className="mt-5 divide-y divide-foreground/10 border-t border-foreground/10">
+        {items.map((item) => (
+          <li
+            key={item}
+            className={`py-4 text-base ${strong ? "text-foreground/85" : "text-muted-foreground"}`}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function BryllupPage() {
   return (
     <>
       <PageHero
-        eyebrow="Bryllup"
-        title="Fest i det gamle fjøset, med egen mat og drikke og ingen sluttid"
-        lead="Gildesalen tar 120 gjester, tunet tar vielsen, og helga koster kr 7 000. Resten bestemmer dere."
+        eyebrow={weddingPage.hero.eyebrow}
+        title={weddingPage.hero.title}
+        lead={weddingPage.hero.lead}
         image={event.image.src}
         alt={event.image.alt}
+        priority
       />
 
-      <section className="border-b border-border bg-background">
-        <dl className="mx-auto grid max-w-7xl grid-cols-2 divide-border px-5 md:grid-cols-4 md:divide-x md:px-8">
-          {numbers.map((item) => (
-            <div key={item.label} className="py-8 md:px-8 md:first:pl-0 md:last:pr-0">
+      <section className="py-2 md:py-3">
+        <dl className={`${wrap} grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4`}>
+          {weddingPage.numbers.map((item) => (
+            <div key={item.label} className="rounded-3xl bg-tint-sage px-6 py-7">
               <dt className="font-serif text-3xl font-light text-primary md:text-4xl">
                 {item.value}
               </dt>
@@ -94,27 +104,20 @@ export default function BryllupPage() {
         </dl>
       </section>
 
-      <Section>
+      <Section tone="muted">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.5fr] lg:gap-16">
-          <SectionHead
-            eyebrow="Første spørsmål"
-            title="Er datoen ledig?"
-            lead="Lørdager i juni, juli og august går først. Tre felt, så svarer vi."
-          />
+          <SectionHead {...weddingPage.dateCheck} />
           <div className="lg:pt-3">
             <DateCheck anledning="Bryllup" lokale="Gildesalen" />
           </div>
         </div>
       </Section>
 
-      <Section tone="muted">
-        <SectionHead
-          eyebrow="Slik ser helga ut"
-          title="Dere har gården fra fredag til søndag"
-        />
+      <Section>
+        <SectionHead {...weddingPage.weekend} />
         <ol className="mt-12 grid gap-10 md:grid-cols-3 md:gap-12">
           {weddingDay.map((day) => (
-            <li key={day.step} className="border-t border-foreground/20 pt-6">
+            <li key={day.step} className="border-t border-foreground/15 pt-6">
               <Eyebrow>{day.step}</Eyebrow>
               <h3 className="mt-3 font-serif text-2xl font-light text-foreground">
                 {day.title}
@@ -127,75 +130,50 @@ export default function BryllupPage() {
         </ol>
       </Section>
 
-      <section className="bg-background">
-        <div className="grid grid-cols-1 gap-3 px-3 md:grid-cols-3 md:gap-4 md:px-4">
-          {photos.map((photo) => (
-            <figure key={photo.src} className="relative aspect-[4/3] overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
+      <section className="pb-6 md:pb-10">
+        <div className={`${wrap} grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4`}>
+          {weddingPage.photos.map((photo) => (
+            <figure
+              key={photo.src}
+              className="relative aspect-[4/3] overflow-hidden rounded-3xl"
+            >
+              <Photo src={photo.src} alt={photo.alt} />
             </figure>
           ))}
         </div>
       </section>
 
-      <Section>
+      <Section tone="sage">
         <SectionHead
-          eyebrow="Ærlig om leien"
-          title="Inkludert, og det dere ordner selv"
-          lead="Dere leier huset, ikke en pakke. Det holder prisen nede og valgene hos dere."
+          eyebrow={weddingPage.rent.eyebrow}
+          title={weddingPage.rent.title}
+          lead={weddingPage.rent.lead}
         />
         <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-16">
-          <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-primary">
-              Inkludert i kr 7 000
-            </p>
-            <ul className="mt-5 divide-y divide-border border-t border-border">
-              {weddingIncluded.map((item) => (
-                <li key={item} className="py-4 text-base text-foreground/85">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              Dere ordner selv
-            </p>
-            <ul className="mt-5 divide-y divide-border border-t border-border">
-              {weddingYouArrange.map((item) => (
-                <li key={item} className="py-4 text-base text-muted-foreground">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <RentList label={weddingPage.rent.included} items={weddingIncluded} strong />
+          <RentList label={weddingPage.rent.arrange} items={weddingYouArrange} />
         </div>
       </Section>
 
-      <Section tone="muted">
+      <Section>
         <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
           <SectionHead
-            eyebrow="Regnestykket"
-            title="Hele helga for kr 7 000"
-            lead="Ingen pris per kuvert, ingen minstekjøp av drikke. Lokalet koster det samme om dere er 40 eller 120."
+            eyebrow={weddingPage.price.eyebrow}
+            title={weddingPage.price.title}
+            lead={weddingPage.price.lead}
           />
           <div>
             <table className="w-full border-collapse text-left">
               <tbody>
                 {weddingPriceExample.rows.map((row) => (
-                  <tr key={row.label} className="border-b border-border">
+                  <tr key={row.label} className="border-b border-foreground/10">
                     <td className="py-4 pr-4 text-base text-foreground">{row.label}</td>
                     <td className="py-4 text-right font-serif text-xl text-foreground">
                       {row.value}
                     </td>
                   </tr>
                 ))}
-                <tr className="border-b border-foreground/30">
+                <tr className="border-b border-foreground/25">
                   <td className="py-5 pr-4 text-base font-medium text-foreground">
                     {weddingPriceExample.total.label}
                   </td>
@@ -208,7 +186,7 @@ export default function BryllupPage() {
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
               {weddingPriceExample.note}{" "}
               <Link href="/priser" className="text-primary hover:underline">
-                Hele prislisten
+                {weddingPage.price.link}
               </Link>
               .
             </p>
@@ -216,34 +194,29 @@ export default function BryllupPage() {
         </div>
       </Section>
 
-      <Section>
+      <Section tone="muted">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:gap-20">
           <div>
             <SectionHead
-              eyebrow="Gjestene"
-              title="Overnatting på Frosta"
-              lead="Gården har ikke egne senger. Frosta har hotell, leiligheter og sjøbuer, og Airbnb har flest hele hus for familier og vennegjenger."
+              eyebrow={weddingPage.lodging.eyebrow}
+              title={weddingPage.lodging.title}
+              lead={weddingPage.lodging.lead}
             />
-            <p className="mt-6 text-sm text-muted-foreground">
-              {practical.parking}, så gjestene kan trygt kjøre. {practical.distance}.
-            </p>
+            <p className="mt-6 text-sm text-muted-foreground">{weddingPage.lodging.note}</p>
           </div>
           <LodgingList />
         </div>
       </Section>
 
-      <Section tone="muted">
+      <Section>
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:gap-20">
-          <SectionHead eyebrow="Spørsmål" title="Det brudepar spør om" />
+          <SectionHead {...weddingPage.faq} />
           <FaqList items={weddingFaqs} />
         </div>
       </Section>
 
-      <CtaBand
-        title="Send datoen, så svarer vi"
-        lead={`Uforpliktende. Vil dere heller ringe, er Gustav på ${site.phone}.`}
-      >
-        <DateCheck anledning="Bryllup" lokale="Gildesalen" tone="light" />
+      <CtaBand title={weddingPage.cta.title} lead={weddingPage.cta.lead}>
+        <DateCheck anledning="Bryllup" lokale="Gildesalen" />
       </CtaBand>
 
       <script

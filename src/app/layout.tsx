@@ -128,7 +128,7 @@ export default function RootLayout({
         >
           Hopp til innhold
         </a>
-        <Header overHero />
+        <Header />
         <main id="innhold">{children}</main>
         <Footer />
         <StickyCta />

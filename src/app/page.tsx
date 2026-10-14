@@ -1,20 +1,31 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
+  Banner,
   ButtonLink,
   CtaBand,
   Eyebrow,
+  PageHero,
+  Photo,
   Section,
   SectionHead,
+  wrap,
 } from "@/components/site/Bits";
-import VenueRow from "@/components/site/VenueRow";
+import VenueCard from "@/components/site/VenueCard";
 import EventGrid from "@/components/site/EventGrid";
 import PriceTable from "@/components/site/PriceTable";
 import FaqList from "@/components/site/FaqList";
 import MapBlock from "@/components/site/MapBlock";
 import DateCheck from "@/components/site/DateCheck";
 import LodgingBar from "@/components/site/LodgingBar";
-import { faqs, galleryImages, otherOccasions, site, venues } from "@/lib/content";
+import {
+  faqs,
+  galleryCategories,
+  galleryImages,
+  home,
+  otherOccasions,
+  venues,
+} from "@/lib/content";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -30,61 +41,41 @@ const faqJsonLd = {
   })),
 };
 
-const heroImage = "/lovable-uploads/9bc8604c-b534-4a72-b0b3-e6f5281829a4.png";
-
-const keyNumbers = [
-  { value: "120", label: "Gjester i Gildesalen, gårdens gamle fjøs" },
-  { value: "kr 7 000", label: "For Gildesalen fredag til søndag, inkl. rengjøring" },
-  { value: "1557", label: "Første gang gården er nevnt" },
-];
+/** Ett bilde per kategori, så mosaikken viser hele bredden i galleriet. */
+const mosaic = galleryCategories
+  .filter((category) => category.id !== "alle")
+  .flatMap((category) => galleryImages.find((image) => image.category === category.id) ?? []);
 
 export default function Home() {
   return (
     <>
-      <section className="relative flex min-h-[92vh] items-end overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={heroImage}
-          alt="Bryllupsfølge på tunet foran den røde låven på Myraunet Gård"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.90)_0%,rgba(0,0,0,0.78)_24%,rgba(0,0,0,0.40)_50%,rgba(0,0,0,0.30)_100%)]" />
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/65 to-transparent" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.2)_45%,transparent_70%)]" />
+      <PageHero
+        eyebrow={home.hero.eyebrow}
+        title={home.hero.title}
+        lead={home.hero.lead}
+        image={home.hero.image}
+        alt={home.hero.alt}
+        priority
+      >
+        <ButtonLink href="/arrangement/bryllup">Bryllup på gården</ButtonLink>
+        <ButtonLink href="/lokaler" variant="soft">
+          Se lokalene
+        </ButtonLink>
+      </PageHero>
 
-        <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 md:px-8 md:pb-24">
-          <Eyebrow tone="light">Selskapslokaler på Frosta, en time fra Trondheim</Eyebrow>
-          <h1 className="mt-5 max-w-4xl font-serif text-[2.6rem] font-light leading-[1.05] text-white md:text-6xl lg:text-7xl">
-            Fest på gården, med egen mat og drikke og ingen sluttid
-          </h1>
-          <p className="mt-7 max-w-2xl text-base leading-relaxed text-cream/85 md:text-lg">
-            Gildesalen tar 120 gjester og koster kr 7 000 for hele helga.
-            Bryllup, konfirmasjon, julebord og kurs i bygninger som har stått
-            her siden 1557.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <ButtonLink href="/arrangement/bryllup" variant="light">
-              Bryllup på gården
-            </ButtonLink>
-            <Link
-              href="/lokaler"
-              className="inline-flex min-h-[48px] items-center justify-center rounded-sm border border-white/40 px-7 text-[13px] font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-white/10"
-            >
-              Se lokalene
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-background">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:px-8 lg:grid-cols-[0.7fr_1.6fr] lg:items-end lg:gap-16">
-          <div>
-            <Eyebrow>Første spørsmål</Eyebrow>
-            <h2 className="mt-3 font-serif text-2xl font-light text-foreground md:text-3xl">
-              Er datoen ledig?
-            </h2>
-          </div>
-          <DateCheck anledning="Arrangement" />
+      <section className="py-2 md:py-3">
+        <div className={wrap}>
+          <Banner tone="sage">
+            <div className="grid gap-8 lg:grid-cols-[0.7fr_1.6fr] lg:items-end lg:gap-16">
+              <div>
+                <Eyebrow>{home.dateCheck.eyebrow}</Eyebrow>
+                <h2 className="mt-3 font-serif text-2xl font-light text-foreground md:text-3xl">
+                  {home.dateCheck.title}
+                </h2>
+              </div>
+              <DateCheck anledning="Arrangement" />
+            </div>
+          </Banner>
         </div>
       </section>
 
@@ -93,66 +84,59 @@ export default function Home() {
       <Section>
         <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
           <div>
-            <Eyebrow>Opplevelsesgård siden 2013</Eyebrow>
+            <Eyebrow>{home.about.eyebrow}</Eyebrow>
             <p className="mt-6 font-serif text-2xl font-light leading-[1.45] text-foreground md:text-[1.85rem]">
-              Myraunet Gård er en familiebedrift på Frosta. Vi leier ut lokaler
-              til selskap, kurs og konferanser, driver tradisjonelt jordbruk, og
-              pakker sesongens grønnsaker i det som en gang var kufjøset.
+              {home.about.lead}
             </p>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              {site.drivers} har drevet gården siden {site.driversSince}. Bygningene
-              er de samme som før, med historiske gjenstander på veggene og
-              jordbrukslandskapet rett utenfor. Gården er registrert i Norsk
-              Kulturarv med Olavsrosa.
+              {home.about.body}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink href="/historie" variant="outline">
+              <ButtonLink href="/historie" variant="soft">
                 Gårdens historie
               </ButtonLink>
-              <ButtonLink href="/familiebedriften" variant="outline">
+              <ButtonLink href="/familiebedriften" variant="soft">
                 Familiebedriften
               </ButtonLink>
             </div>
           </div>
 
-          <dl className="grid content-start gap-px border-t border-border">
-            {keyNumbers.map((item) => (
-              <div key={item.label} className="border-b border-border py-7">
+          <dl className="grid content-start gap-4 sm:grid-cols-3 lg:grid-cols-1">
+            {home.keyNumbers.map((item) => (
+              <div key={item.label} className="rounded-3xl bg-tint-cream px-7 py-6">
                 <dt className="font-serif text-4xl font-light text-primary md:text-5xl">
                   {item.value}
                 </dt>
-                <dd className="mt-2 text-sm text-muted-foreground">
-                  {item.label}
-                </dd>
+                <dd className="mt-2 text-sm text-muted-foreground">{item.label}</dd>
               </div>
             ))}
           </dl>
         </div>
       </Section>
 
-      <Section id="lokaler" tone="muted">
+      <Section id="lokaler">
         <SectionHead
-          eyebrow="Tre lokaler"
-          title="Fra 35 gjester i Grisehuset til 120 i Gildesalen"
-          lead="Lokalene kan leies hver for seg eller samlet. Kjøkkenet står til leietakers disposisjon, og dere ordner mat og drikke selv."
+          eyebrow={home.venues.eyebrow}
+          title={home.venues.title}
+          lead={home.venues.lead}
         />
-        <div className="mt-16 space-y-20 md:space-y-24">
-          {venues.map((venue, index) => (
-            <VenueRow key={venue.slug} venue={venue} index={index} />
+        <div className="mt-12 grid gap-x-6 gap-y-12 md:grid-cols-3">
+          {venues.map((venue) => (
+            <VenueCard key={venue.slug} venue={venue} />
           ))}
         </div>
-        <div className="mt-16">
+        <div className="mt-12">
           <ButtonLink href="/lokaler">Se alle lokaler</ButtonLink>
         </div>
       </Section>
 
-      <Section id="arrangement">
+      <Section id="arrangement" tone="muted">
         <SectionHead
-          eyebrow="Anledninger"
-          title="Det som feires her"
-          lead="Vi har erfaring med de store dagene og de faglige helgene. Lokalene har også vært brukt til konsert og moteshow."
+          eyebrow={home.events.eyebrow}
+          title={home.events.title}
+          lead={home.events.lead}
         />
-        <div className="mt-14">
+        <div className="mt-12">
           <EventGrid />
         </div>
         <p className="mt-10 text-sm leading-relaxed text-muted-foreground">
@@ -160,16 +144,16 @@ export default function Home() {
         </p>
       </Section>
 
-      <Section tone="muted">
+      <Section tone="sage">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
           <div>
             <SectionHead
-              eyebrow="Priser"
-              title="Åpne priser, ingen pakkepris"
-              lead="Dere betaler for lokalet. Rengjøring og kjøkkenhjelp kommer i tillegg om dere ønsker det."
+              eyebrow={home.prices.eyebrow}
+              title={home.prices.title}
+              lead={home.prices.lead}
             />
             <div className="mt-8">
-              <ButtonLink href="/priser" variant="outline">
+              <ButtonLink href="/priser" variant="soft">
                 Hele prislisten
               </ButtonLink>
             </div>
@@ -181,26 +165,27 @@ export default function Home() {
       <Section>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead
-            eyebrow="Galleri"
-            title="Gården gjennom året"
-            lead="Sommer, vinter og lokalene innvendig."
+            eyebrow={home.gallery.eyebrow}
+            title={home.gallery.title}
+            lead={home.gallery.lead}
           />
-          <ButtonLink href="/galleri" variant="outline">
+          <ButtonLink href="/galleri" variant="soft">
             Se hele galleriet
           </ButtonLink>
         </div>
         <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-          {galleryImages.slice(0, 8).map((image) => (
+          {mosaic.map((image, index) => (
             <Link
               key={image.src}
               href="/galleri"
-              className="group relative aspect-square overflow-hidden"
+              className={`group relative aspect-square overflow-hidden rounded-2xl md:rounded-3xl ${
+                index === 0 ? "col-span-2 row-span-2" : ""
+              }`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Photo
                 src={image.src}
                 alt={image.alt}
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                className="transition-transform duration-700 group-hover:scale-[1.04]"
               />
             </Link>
           ))}
@@ -209,11 +194,11 @@ export default function Home() {
 
       <Section tone="muted">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:gap-20">
-          <SectionHead eyebrow="Spørsmål" title="Det folk lurer på" />
+          <SectionHead eyebrow={home.faq.eyebrow} title={home.faq.title} />
           <div>
             <FaqList limit={5} />
             <div className="mt-10">
-              <ButtonLink href="/priser" variant="outline">
+              <ButtonLink href="/priser" variant="soft">
                 Priser og vilkår
               </ButtonLink>
             </div>
