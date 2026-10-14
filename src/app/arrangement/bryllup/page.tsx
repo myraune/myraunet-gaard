@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
+  ButtonLink,
   CtaBand,
-  Eyebrow,
   PageHero,
   Photo,
   Section,
@@ -12,9 +12,10 @@ import {
 import DateCheck from "@/components/site/DateCheck";
 import FaqList from "@/components/site/FaqList";
 import LodgingList from "@/components/site/LodgingList";
+import WeekendTimeline from "@/components/site/WeekendTimeline";
 import {
   eventBySlug,
-  weddingDay,
+  visit,
   weddingFaqs,
   weddingIncluded,
   weddingPage,
@@ -87,7 +88,12 @@ export default function BryllupPage() {
         image={event.image.src}
         alt={event.image.alt}
         priority
-      />
+      >
+        <ButtonLink href="#dato">{weddingPage.hero.dateCta}</ButtonLink>
+        <ButtonLink href={visit.href} variant="soft">
+          {visit.button}
+        </ButtonLink>
+      </PageHero>
 
       <section className="py-2 md:py-3">
         <dl className={`${wrap} grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4`}>
@@ -104,7 +110,7 @@ export default function BryllupPage() {
         </dl>
       </section>
 
-      <Section tone="muted">
+      <Section tone="muted" id="dato">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.5fr] lg:gap-16">
           <SectionHead {...weddingPage.dateCheck} />
           <div className="lg:pt-3">
@@ -115,19 +121,9 @@ export default function BryllupPage() {
 
       <Section>
         <SectionHead {...weddingPage.weekend} />
-        <ol className="mt-12 grid gap-10 md:grid-cols-3 md:gap-12">
-          {weddingDay.map((day) => (
-            <li key={day.step} className="border-t border-foreground/15 pt-6">
-              <Eyebrow>{day.step}</Eyebrow>
-              <h3 className="mt-3 font-serif text-2xl font-light text-foreground">
-                {day.title}
-              </h3>
-              <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-                {day.text}
-              </p>
-            </li>
-          ))}
-        </ol>
+        <div className="mt-12">
+          <WeekendTimeline />
+        </div>
       </Section>
 
       <section className="pb-6 md:pb-10">
@@ -203,6 +199,12 @@ export default function BryllupPage() {
               lead={weddingPage.lodging.lead}
             />
             <p className="mt-6 text-sm text-muted-foreground">{weddingPage.lodging.note}</p>
+            <Link
+              href="/for-gjester"
+              className="mt-4 inline-flex min-h-[44px] items-center text-[13px] font-medium uppercase tracking-[0.14em] text-primary underline-offset-4 hover:underline"
+            >
+              {weddingPage.lodging.guestLink}
+            </Link>
           </div>
           <LodgingList />
         </div>

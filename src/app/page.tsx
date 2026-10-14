@@ -17,6 +17,7 @@ import PriceTable from "@/components/site/PriceTable";
 import FaqList from "@/components/site/FaqList";
 import MapBlock from "@/components/site/MapBlock";
 import DateCheck from "@/components/site/DateCheck";
+import WeekendTimeline from "@/components/site/WeekendTimeline";
 import LodgingBar from "@/components/site/LodgingBar";
 import {
   faqs,
@@ -25,6 +26,7 @@ import {
   home,
   otherOccasions,
   venues,
+  visit,
 } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -60,6 +62,9 @@ export default function Home() {
         <ButtonLink href="/arrangement/bryllup">Bryllup på gården</ButtonLink>
         <ButtonLink href="/lokaler" variant="soft">
           Se lokalene
+        </ButtonLink>
+        <ButtonLink href={visit.href} variant="soft">
+          {visit.button}
         </ButtonLink>
       </PageHero>
 
@@ -142,6 +147,22 @@ export default function Home() {
         <p className="mt-10 text-sm leading-relaxed text-muted-foreground">
           Også holdt her: {otherOccasions.join(", ").toLowerCase()}.
         </p>
+      </Section>
+
+      <Section>
+        <SectionHead
+          eyebrow={home.wedding.eyebrow}
+          title={home.wedding.title}
+          lead={home.wedding.lead}
+        />
+        <div className="mt-12">
+          <WeekendTimeline />
+        </div>
+        <div className="mt-12">
+          <ButtonLink href="/arrangement/bryllup" variant="soft">
+            {home.wedding.link}
+          </ButtonLink>
+        </div>
       </Section>
 
       <Section tone="sage">

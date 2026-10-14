@@ -687,17 +687,17 @@ export const weddingFaqs = [
 export const weddingDay = [
   {
     step: "Fredag",
-    title: "Dere får nøkkelen",
+    title: "Pynt og rigg",
     text: "Pynt Gildesalen i deres eget tempo, kjør inn drikke og la leverandørene rigge. Ingen andre bruker lokalet samme helg.",
   },
   {
     step: "Lørdag",
-    title: "Vielse på tunet, fest i fjøset",
+    title: "Vielse og fest",
     text: "Vielse ute på tunet eller i Frosta kirke, bilder foran den røde låven, og middag med langbord til 120 gjester i Gildesalen. Festen varer så lenge dere vil.",
   },
   {
     step: "Søndag",
-    title: "Frokost dagen derpå",
+    title: "Rydding og hjemreise",
     text: "Grisehuset passer til dagen derpå med kaffe og rester, om dere vil samle de nærmeste før hjemreisen. Rydd klart til rengjøring, så tar vi resten.",
   },
 ];
@@ -745,6 +745,12 @@ export const cta = {
   button: "Send forespørsel",
 };
 
+export const visit = {
+  button: "Kom og se gården",
+  href: "/kontakt?emne=visning",
+  message: "Vi vil gjerne komme og se gården.",
+};
+
 export const travel = [
   { label: "Fra Trondheim", value: "ca. 1 time" },
   { label: "Fra Stjørdal", value: "ca. 30 minutter" },
@@ -771,6 +777,12 @@ export const home = {
     alt: "Bryllupsfølge på tunet foran den røde låven på Myraunet Gård",
   },
   dateCheck: { eyebrow: "Første spørsmål", title: "Er datoen ledig?" },
+  wedding: {
+    eyebrow: "Bryllup",
+    title: "Hele helga er deres",
+    lead: "Gildesalen er for dere alene fra fredag til søndag.",
+    link: "Mer om bryllup på gården",
+  },
   about: {
     eyebrow: `Opplevelsesgård siden ${site.driversSince}`,
     lead: "Myraunet Gård er en familiebedrift på Frosta. Vi leier ut lokaler til selskap, kurs og konferanser, driver tradisjonelt jordbruk, og pakker sesongens grønnsaker i det som en gang var kufjøset.",
@@ -829,6 +841,7 @@ export const weddingPage = {
     eyebrow: "Bryllup",
     title: "Fest i det gamle fjøset, med egen mat og drikke og ingen sluttid",
     lead: `Gildesalen tar ${capacity.gildesalen} gjester, tunet tar vielsen, og helga koster ${weekendTotalShort}. Resten bestemmer dere.`,
+    dateCta: "Sjekk om datoen er ledig",
   },
   numbers: [
     { value: capacity.gildesalen, label: "gjester i Gildesalen" },
@@ -868,6 +881,7 @@ export const weddingPage = {
     title: "Overnatting på Frosta",
     lead: "Gården har ikke egne senger. Frosta har hotell, leiligheter og sjøbuer, og Airbnb har flest hele hus for familier og vennegjenger.",
     note: `${practical.parking}, så gjestene kan trygt kjøre. ${practical.distance}.`,
+    guestLink: "Send denne siden til gjestene",
   },
   faq: { eyebrow: "Spørsmål", title: "Det brudepar spør om" },
   cta: {
@@ -1008,5 +1022,30 @@ export const overnattingPage = {
   cta: {
     title: "Datoen først, sengene etterpå",
     lead: "Send dato og antall gjester, så vet dere om gården er ledig før dere booker overnatting.",
+  },
+};
+
+export const forGjesterPage = {
+  metaTitle: "For gjester, slik kommer dere til Myraunet Gård",
+  metaDescription: `Adresse, parkering og overnatting for gjester som skal i bryllup på Myraunet Gård, ${site.address.street} på Frosta.`,
+  hero: {
+    eyebrow: "For gjester",
+    title: "Velkommen til bryllup på Myraunet Gård",
+    lead: "Her finner dere adressen, parkering og forslag til overnatting.",
+  },
+  parking: {
+    eyebrow: "Parkering",
+    title: "Parker på tunet",
+    lead: `${practical.parking}.`,
+  },
+  lodging: {
+    eyebrow: "Overnatting",
+    title: "Overnatting på Frosta",
+    lead: weddingPage.lodging.lead,
+  },
+  questions: {
+    eyebrow: "Spørsmål?",
+    title: "Kontakt brudeparet",
+    lead: "Spørsmål om dagen tar dere direkte med brudeparet som har invitert dere.",
   },
 };

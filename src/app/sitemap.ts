@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/priser", priority: 0.8 },
     { path: "/kontakt", priority: 0.8 },
     { path: "/overnatting", priority: 0.7 },
+    { path: "/for-gjester", priority: 0.5 },
     { path: "/galleri", priority: 0.6 },
     { path: "/historie", priority: 0.6 },
     { path: "/familiebedriften", priority: 0.6 },

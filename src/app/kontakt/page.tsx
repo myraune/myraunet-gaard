@@ -3,7 +3,7 @@ import { Eyebrow, PageHero, Section, SectionHead } from "@/components/site/Bits"
 import MapBlock from "@/components/site/MapBlock";
 import FaqList from "@/components/site/FaqList";
 import ForesporselForm from "./ForesporselForm";
-import { kontaktPage, site } from "@/lib/content";
+import { kontaktPage, site, visit } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: kontaktPage.metaTitle,
@@ -11,7 +11,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/kontakt" },
 };
 
-export default function KontaktPage() {
+export default async function KontaktPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ emne?: string | string[] }>;
+}) {
+  const { emne } = await searchParams;
+
   return (
     <>
       <PageHero {...kontaktPage.hero} priority />
@@ -21,7 +27,7 @@ export default function KontaktPage() {
           <div>
             <SectionHead eyebrow="Forespørsel" title="Fortell om anledningen" />
             <div className="mt-10">
-              <ForesporselForm />
+              <ForesporselForm initialMelding={emne === "visning" ? visit.message : ""} />
             </div>
           </div>
 

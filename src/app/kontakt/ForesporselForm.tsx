@@ -18,7 +18,7 @@ const felt =
 const etikett =
   "block text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground";
 
-export default function ForesporselForm() {
+export default function ForesporselForm({ initialMelding = "" }: { initialMelding?: string }) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [form, setForm] = useState({
@@ -29,7 +29,7 @@ export default function ForesporselForm() {
     lokale: venues[0].name,
     dato: "",
     gjester: "",
-    melding: "",
+    melding: initialMelding,
     nettside: "",
   });
 
