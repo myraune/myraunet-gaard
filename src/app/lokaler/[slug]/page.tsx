@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   ButtonLink,
   CtaBand,
+  Eyebrow,
   FactList,
   PageHero,
+  Photo,
   Section,
   SectionHead,
 } from "@/components/site/Bits";
 import PriceTable from "@/components/site/PriceTable";
+import VenueCard from "@/components/site/VenueCard";
 import DateCheck from "@/components/site/DateCheck";
 import { site, venueBySlug, venues } from "@/lib/content";
 
@@ -89,14 +91,12 @@ export default async function VenuePage({
             ))}
 
             <div className="pt-4">
-              <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-primary">
-                Passer til
-              </p>
+              <Eyebrow>Passer til</Eyebrow>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {venue.suits.map((item) => (
                   <li
                     key={item}
-                    className="border border-border px-4 py-2 text-sm text-foreground/80"
+                    className="rounded-full bg-tint-cream px-4 py-2 text-sm text-foreground/80"
                   >
                     {item}
                   </li>
@@ -105,10 +105,8 @@ export default async function VenuePage({
             </div>
           </div>
 
-          <aside className="lg:pt-2">
-            <div className="border-t border-foreground/20">
-              <FactList items={venue.facts} />
-            </div>
+          <aside className="self-start rounded-3xl bg-tint-cream px-6 py-6 md:px-8 md:py-8">
+            <FactList items={venue.facts} />
             {venue.priceNote && (
               <p className="mt-4 text-sm text-muted-foreground">
                 {venue.priceNote}
@@ -146,13 +144,8 @@ export default async function VenuePage({
           <SectionHead eyebrow="Bilder" title={`${venue.name} i bilder`} />
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {venue.images.map((image) => (
-              <div key={image.src} className="relative aspect-[4/3] overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="h-full w-full object-cover"
-                />
+              <div key={image.src} className="relative aspect-[4/3] overflow-hidden rounded-3xl">
+                <Photo src={image.src} alt={image.alt} />
               </div>
             ))}
           </div>
@@ -172,20 +165,9 @@ export default async function VenuePage({
 
       <Section>
         <SectionHead eyebrow="Andre lokaler" title="Se også" />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
+        <div className="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-2">
           {others.map((other) => (
-            <Link
-              key={other.slug}
-              href={`/lokaler/${other.slug}`}
-              className="group border border-border bg-background p-8 transition-colors hover:border-primary"
-            >
-              <h3 className="font-serif text-2xl font-light text-foreground group-hover:text-primary">
-                {other.name}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {other.lead}
-              </p>
-            </Link>
+            <VenueCard key={other.slug} venue={other} />
           ))}
         </div>
       </Section>

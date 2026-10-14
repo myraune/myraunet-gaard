@@ -6,6 +6,7 @@ import {
   CtaBand,
   FactList,
   PageHero,
+  Photo,
   Section,
   SectionHead,
 } from "@/components/site/Bits";
@@ -76,10 +77,8 @@ export default async function EventPage({
             ))}
           </div>
 
-          <aside>
-            <div className="border-t border-foreground/20">
-              <FactList items={event.points} />
-            </div>
+          <aside className="self-start rounded-3xl bg-tint-cream px-6 py-6 md:px-8 md:py-8">
+            <FactList items={event.points} />
             {event.season && (
               <p className="mt-4 text-sm text-muted-foreground">
                 Sesong: {event.season.toLowerCase()}.
@@ -132,17 +131,20 @@ export default async function EventPage({
 
       <Section>
         <SectionHead eyebrow="Andre anledninger" title="Se også" />
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+        <div className="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-3">
           {others.map((other) => (
-            <Link
-              key={other.slug}
-              href={`/arrangement/${other.slug}`}
-              className="group border border-border bg-background p-7 transition-colors hover:border-primary"
-            >
-              <h3 className="font-serif text-xl font-light text-foreground group-hover:text-primary">
+            <Link key={other.slug} href={`/arrangement/${other.slug}`} className="group block">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-3xl">
+                <Photo
+                  src={other.image.src}
+                  alt={other.image.alt}
+                  className="transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+              </div>
+              <h3 className="mt-4 font-serif text-2xl font-light text-foreground transition-colors group-hover:text-primary">
                 {other.navLabel}
               </h3>
-              <p className="mt-2 text-sm text-muted-foreground">{other.venue}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{other.venue}</p>
             </Link>
           ))}
         </div>

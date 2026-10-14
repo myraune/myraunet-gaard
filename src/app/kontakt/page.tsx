@@ -1,27 +1,20 @@
 import type { Metadata } from "next";
-import { PageHero, Section, SectionHead } from "@/components/site/Bits";
+import { Eyebrow, PageHero, Section, SectionHead } from "@/components/site/Bits";
 import MapBlock from "@/components/site/MapBlock";
 import FaqList from "@/components/site/FaqList";
 import ForesporselForm from "./ForesporselForm";
-import { site } from "@/lib/content";
+import { kontaktPage, site } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Kontakt og forespørsel",
-  description:
-    "Send en uforpliktende forespørsel om leie av lokaler på Myraunet Gård, eller ring 952 84 333. Kvamdalsvegen 355, 7633 Frosta.",
+  title: kontaktPage.metaTitle,
+  description: kontaktPage.metaDescription,
   alternates: { canonical: "/kontakt" },
 };
 
 export default function KontaktPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Kontakt"
-        title="Sjekk om datoen er ledig"
-        lead="Send dato og omtrentlig antall gjester, så svarer vi om lokalet er ledig og hva det koster. Forespørselen er ikke bindende."
-        image="/myraunet-gallery/natur/6.jpg"
-        alt="Sommerhimmel over tunet på Myraunet Gård"
-      />
+      <PageHero {...kontaktPage.hero} priority />
 
       <Section>
         <div className="grid gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-20">
@@ -33,10 +26,8 @@ export default function KontaktPage() {
           </div>
 
           <aside className="lg:pt-4">
-            <div className="border border-border p-8">
-              <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-primary">
-                Ta direkte kontakt
-              </p>
+            <div className="rounded-3xl bg-tint-cream p-8">
+              <Eyebrow>Ta direkte kontakt</Eyebrow>
               <div className="mt-6 space-y-5 text-base">
                 <p>
                   <span className="block text-sm text-muted-foreground">
@@ -72,7 +63,7 @@ export default function KontaktPage() {
                 </p>
               </div>
 
-              <div className="mt-8 border-t border-border pt-6 text-sm">
+              <div className="mt-8 border-t border-foreground/10 pt-6 text-sm">
                 <a
                   href={site.facebook}
                   target="_blank"

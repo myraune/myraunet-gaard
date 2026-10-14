@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
+import { Photo } from "@/components/site/Bits";
 import { galleryCategories, galleryImages } from "@/lib/content";
 
 export default function GalleryClient() {
@@ -32,7 +33,7 @@ export default function GalleryClient() {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2 border-b border-border pb-6">
+      <div className="flex flex-wrap gap-2">
         {galleryCategories.map((item) => (
           <button
             key={item.id}
@@ -41,10 +42,11 @@ export default function GalleryClient() {
               setCategory(item.id);
               setOpenIndex(null);
             }}
-            className={`min-h-[44px] px-5 text-[13px] font-medium uppercase tracking-[0.12em] transition-colors ${
+            aria-pressed={category === item.id}
+            className={`min-h-[44px] rounded-full px-6 text-[13px] font-medium uppercase tracking-[0.12em] transition-colors ${
               category === item.id
                 ? "bg-primary text-primary-foreground"
-                : "text-muted-foreground hover:text-primary"
+                : "bg-foreground/[0.06] text-foreground hover:bg-foreground/[0.12]"
             }`}
           >
             {item.label}
@@ -58,15 +60,13 @@ export default function GalleryClient() {
             key={image.src}
             type="button"
             onClick={() => setOpenIndex(index)}
-            className="group relative aspect-[4/3] overflow-hidden"
+            className="group relative aspect-[4/3] overflow-hidden rounded-2xl md:rounded-3xl"
             aria-label={`Åpne bilde: ${image.alt}`}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Photo
               src={image.src}
               alt={image.alt}
-              loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              className="transition-transform duration-700 group-hover:scale-[1.04]"
             />
           </button>
         ))}
@@ -96,7 +96,7 @@ export default function GalleryClient() {
             <img
               src={images[openIndex].src}
               alt={images[openIndex].alt}
-              className="max-h-[80vh] w-auto object-contain"
+              className="max-h-[80vh] w-auto rounded-2xl object-contain"
             />
             <figcaption className="mt-4 text-center text-sm text-cream/70">
               {images[openIndex].alt} ({openIndex + 1} av {images.length})

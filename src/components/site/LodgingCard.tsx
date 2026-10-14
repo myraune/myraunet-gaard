@@ -1,4 +1,5 @@
 import type { Lodging } from "@/lib/content";
+import { Eyebrow, Photo } from "./Bits";
 
 function Logo({ place }: { place: Lodging }) {
   return (
@@ -20,43 +21,37 @@ function Logo({ place }: { place: Lodging }) {
   );
 }
 
+const bookButton =
+  "inline-flex min-h-[44px] items-center justify-center rounded-full px-6 text-[13px] font-medium uppercase tracking-[0.14em] transition-colors";
+
+/** Ett overnattingssted. Sitter alltid inni en tonet banner fra siden. */
 export default function LodgingCard({ place }: { place: Lodging }) {
   const [main, second] = place.images;
 
   return (
-    <article className="grid gap-6 border-t border-border py-10 md:grid-cols-[1.2fr_1fr] md:gap-12 md:py-14">
+    <article className="grid gap-8 md:grid-cols-[1.2fr_1fr] md:gap-12">
       <div className="grid grid-cols-[2fr_1fr] gap-3">
-        {main ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={main.src}
-            alt={main.alt}
-            loading="lazy"
-            className={`aspect-[4/3] w-full object-cover ${second ? "" : "col-span-2"}`}
-          />
-        ) : (
-          <div className="col-span-2 flex aspect-[4/3] items-center justify-center border border-border bg-secondary/40">
-            <span className="font-serif text-4xl font-light text-primary">Airbnb</span>
-          </div>
-        )}
+        <div
+          className={`relative aspect-[4/3] overflow-hidden rounded-2xl md:rounded-3xl ${second ? "" : "col-span-2"}`}
+        >
+          <Photo src={main.src} alt={main.alt} className="absolute inset-0" />
+        </div>
         {second && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={second.src}
-            alt={second.alt}
-            loading="lazy"
-            className="aspect-[3/4] w-full object-cover"
-          />
+          <div className="relative aspect-[3/4] overflow-hidden rounded-2xl md:rounded-3xl">
+            <Photo src={second.src} alt={second.alt} className="absolute inset-0" />
+          </div>
         )}
       </div>
 
       <div>
-        <p className="flex flex-wrap items-center gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-primary">
-          <span>{place.type}</span>
+        <div className="flex flex-wrap items-center gap-3">
+          <Eyebrow>{place.type}</Eyebrow>
           {place.family && (
-            <span className="bg-primary px-2 py-0.5 text-primary-foreground">{place.family}</span>
+            <span className="rounded-full bg-primary px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-primary-foreground">
+              {place.family}
+            </span>
           )}
-        </p>
+        </div>
         <div className="mt-3">
           <Logo place={place} />
         </div>
@@ -64,7 +59,7 @@ export default function LodgingCard({ place }: { place: Lodging }) {
           {place.body}
         </p>
 
-        <dl className="mt-6 divide-y divide-border border-t border-border text-sm">
+        <dl className="mt-6 divide-y divide-foreground/10 border-t border-foreground/10 text-sm">
           <div className="flex justify-between gap-6 py-3">
             <dt className="text-muted-foreground">Fra</dt>
             <dd className="text-right font-serif text-xl text-foreground">{place.priceFrom}</dd>
@@ -89,7 +84,7 @@ export default function LodgingCard({ place }: { place: Lodging }) {
             href={place.bookUrl ?? place.url}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-[44px] items-center rounded-sm bg-primary px-6 text-[13px] font-medium uppercase tracking-[0.14em] text-primary-foreground hover:bg-forest-dark"
+            className={`${bookButton} bg-primary text-primary-foreground hover:bg-forest-dark`}
           >
             {place.bookUrl ? "Se priser og book" : "Gå til nettsiden"}
           </a>
@@ -98,7 +93,7 @@ export default function LodgingCard({ place }: { place: Lodging }) {
               href={place.url}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex min-h-[44px] items-center px-2 text-[13px] font-medium uppercase tracking-[0.14em] text-primary underline-offset-4 hover:underline"
+              className={`${bookButton} bg-foreground/[0.06] text-foreground hover:bg-foreground/[0.12]`}
             >
               Nettsiden
             </a>

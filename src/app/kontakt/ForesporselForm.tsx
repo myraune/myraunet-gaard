@@ -14,7 +14,7 @@ const anledninger = [
 ];
 
 const felt =
-  "w-full border border-border bg-background px-4 py-3 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-primary";
+  "w-full rounded-2xl bg-foreground/[0.06] px-4 py-3.5 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:bg-white focus:ring-2 focus:ring-primary/40";
 const etikett =
   "block text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground";
 
@@ -94,7 +94,7 @@ export default function ForesporselForm() {
 
   if (status === "sent") {
     return (
-      <div className="border border-primary/40 bg-secondary/50 p-8">
+      <div className="rounded-3xl bg-tint-sage p-8">
         <h3 className="font-serif text-2xl font-light text-foreground">
           Takk, forespørselen er sendt
         </h3>
@@ -262,13 +262,13 @@ export default function ForesporselForm() {
       </div>
 
       {error && (
-        <p className="border border-destructive/40 bg-destructive/5 px-4 py-3 text-sm text-destructive">
+        <p className="rounded-2xl bg-destructive/10 px-4 py-3 text-sm text-destructive">
           {error}
         </p>
       )}
 
       {status === "mailto" && (
-        <p className="border border-border bg-secondary/50 px-4 py-3 text-sm text-muted-foreground">
+        <p className="rounded-2xl bg-tint-cream px-4 py-3 text-sm text-muted-foreground">
           Vi åpnet e-postprogrammet ditt med forespørselen ferdig utfylt. Send
           den derfra, eller ring {site.phone}.
         </p>
@@ -278,7 +278,7 @@ export default function ForesporselForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex min-h-[52px] items-center justify-center rounded-sm bg-primary px-8 text-[13px] font-medium uppercase tracking-[0.14em] text-primary-foreground transition-colors hover:bg-forest-dark disabled:opacity-60"
+          className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-primary px-8 text-[13px] font-medium uppercase tracking-[0.14em] text-primary-foreground transition-colors hover:bg-forest-dark disabled:opacity-60"
         >
           {status === "sending" ? "Sender..." : "Send forespørsel"}
         </button>

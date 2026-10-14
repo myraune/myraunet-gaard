@@ -919,3 +919,94 @@ export const priserPage = {
     lead: "Send dato og omtrentlig antall gjester, så svarer vi om lokalet er ledig.",
   },
 };
+
+export const arrangementPage = {
+  metaTitle: "Arrangement på Myraunet Gård",
+  metaDescription:
+    "Bryllup, konfirmasjon, julebord, kurs og konferanse på gård i Trøndelag. Se hvilket lokale som passer anledningen, og hva leien koster.",
+  hero: {
+    eyebrow: "Arrangement",
+    title: "Anledningen bestemmer hvilket lokale dere trenger",
+    lead: "De fleste selskap havner i Gildesalen eller Grisehuset. Her er hva som passer til hva.",
+    image: "/lovable-uploads/15847e16-8ae1-4f0d-9da0-94c9b5c3bb5f.png",
+    alt: "Langbord ute på gårdstunet en sommerdag",
+  },
+  other:
+    "Gården har også lagt hus til fødselsdager, jubileer, grillfester, minnesamvær, konsert og moteshow. Passer ikke anledningen inn i noen av kategoriene over, ta kontakt så finner vi ut av det.",
+  faq: { eyebrow: "Spørsmål", title: "Praktisk om leien" },
+};
+
+export const galleriPage = {
+  metaTitle: "Galleri fra Myraunet Gård",
+  metaDescription:
+    "Bilder fra Gildesalen, Grisehuset og Stabburet, og fra gårdstunet på Frosta sommer som vinter.",
+  hero: {
+    eyebrow: "Galleri",
+    title: "Lokalene og landskapet",
+    lead: "Klikk på et bilde for å se det stort. Bruk piltastene for å bla.",
+    image: "/myraunet-gallery/vinter/3.jpg",
+    alt: "Opplyste trær på tunet en vinterkveld",
+  },
+};
+
+export const kontaktPage = {
+  metaTitle: "Kontakt og forespørsel",
+  metaDescription: `Send en uforpliktende forespørsel om leie av lokaler på Myraunet Gård, eller ring ${site.phone}. ${site.address.street}, ${site.address.postal} ${site.address.city}.`,
+  hero: {
+    eyebrow: "Kontakt",
+    title: "Sjekk om datoen er ledig",
+    lead: "Send dato og omtrentlig antall gjester, så svarer vi om lokalet er ledig og hva det koster. Forespørselen er ikke bindende.",
+    image: "/myraunet-gallery/natur/6.jpg",
+    alt: "Sommerhimmel over tunet på Myraunet Gård",
+  },
+};
+
+const lodgingFrom = (slug: string) => lodging.find((l) => l.slug === slug)!.priceFrom;
+const fjordbuerBeds = "40";
+const klostergardenBeds = "30";
+
+export const overnattingPage = {
+  metaTitle: "Overnatting for gjestene på Frosta",
+  metaDescription: `Myraunet Gård har ikke egne senger. Her er hotell, leiligheter, sjøbuer og Airbnb på Frosta med priser fra ${cheapestLodging} per natt, alle en kort kjøretur fra gården.`,
+  hero: {
+    eyebrow: "Overnatting",
+    title: "Gjestene sover på Frosta, festen er hos oss",
+    lead: "Gården har ikke egne senger. Frosta har hotell ved sjøen, leiligheter, sjøbuer og en gjestegård ute på Tautra, alt innen kort kjøretur.",
+    image: lodging[0].images[0].src,
+    alt: "De røde sjøbuene til Frosta Fjordbuer ved Trondheimsfjorden",
+  },
+  numbers: [
+    { value: String(lodging.length), label: "steder på Frosta, pluss Airbnb og Booking.com" },
+    { value: cheapestLodging, label: "billigste natt, leilighet på Hauganfjæra" },
+    { value: fjordbuerBeds, label: "senger samlet hos Frosta Fjordbuer" },
+    { value: "100+", label: "parkeringsplasser på tunet" },
+  ],
+  places: {
+    eyebrow: "Stedene",
+    title: "Fem steder, fra hotellrom til sjøbuer",
+    lead: `Priser og tall er hentet fra stedenes egne sider og kan endre seg. Book direkte hos dem. ${practical.parking}.`,
+  },
+  platforms: {
+    eyebrow: "Finn flere",
+    title: "Resten av Frosta ligger på Airbnb og Booking.com",
+    lead: "Hele hus for familier og vennegjenger finner dere oftest på Airbnb. Booking.com dekker også Levanger og Stjørdal, en halvtime unna.",
+  },
+  highlights: [
+    {
+      title: "Hele følget samlet",
+      text: `Frosta Fjordbuer drives av slekta vår og har ${fjordbuerBeds} senger på ett sted. Si at dere skal feire på Myraunet når dere booker. Klostergården har rundt ${klostergardenBeds}.`,
+    },
+    {
+      title: "Hotellstandard",
+      text: `Frosta Brygge er stedet for gjester som vil ha rom, restaurant og frokost uten å tenke på noe. Fra ${lodgingFrom("frosta-brygge")} per natt.`,
+    },
+    {
+      title: "Rimeligst",
+      text: `Leilighetene på Hauganfjæra fra ${cheapestLodging} per natt fra natt to, og et helt hus delt på flere via Airbnb.`,
+    },
+  ],
+  cta: {
+    title: "Datoen først, sengene etterpå",
+    lead: "Send dato og antall gjester, så vet dere om gården er ledig før dere booker overnatting.",
+  },
+};
